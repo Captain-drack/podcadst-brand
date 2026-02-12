@@ -1,1503 +1,805 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Pitch — Select a Direction</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BTW GEN — Brand Direction Slides (7 Themes)</title>
 
-  <!-- Fonts (Google) -->
+  <!-- Google Fonts (theme-specific). Keeping in one request for reliability. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Archivo:wght@400;700;900&family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Courier+Prime:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;700&family=Anton&family=Bebas+Neue&family=Sora:wght@400;600;700;800&family=Dela+Gothic+One&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Archivo+Black&family=Work+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&family=Courier+Prime:wght@400;700&family=Dela+Gothic+One&family=Permanent+Marker&family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #000000;
-      --fg: #ffffff;
-      --muted: rgba(255,255,255,.65);
-      --muted2: rgba(255,255,255,.40);
-      --card: rgba(255,255,255,.05);
-      --border: rgba(255,255,255,.10);
-
-      /* Dynamic font families updated by JS */
-      --fontHead: 'Space Grotesk', sans-serif;
-      --fontBody: 'Inter', sans-serif;
-      --fontMono: 'JetBrains Mono', monospace;
-
-      /* Dynamic accent colors updated by JS */
-      --accent: #ffff00;
-      --accent2: #22d3ee;
-      --accent3: #ff3b30;
-
-      /* Dynamic RGB offset for glitch */
-      --glitchA: #0066ff;
-      --glitchB: #ff3d00;
-
-      /* Texture tuning */
-      --textureOpacity: 0.16;
-      --glowOpacity: 0.22;
-      --noiseOpacity: 0.07;
+    :root{
+      --pageBg:#070707;
+      --pageText:#EDEDED;
+      --muted:#A9A9A9;
+      --panel:rgba(255,255,255,0.04);
+      --panelBorder:rgba(255,255,255,0.10);
+      --radius:28px;
+      --radiusSm:18px;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --max: 1180px;
     }
 
-    body {
-      font-family: var(--fontBody);
-      background: var(--bg);
-      color: var(--fg);
-      overflow-x: hidden;
+    *{ box-sizing:border-box; }
+
+    html, body{ height:100%; }
+
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 15% 0%, rgba(255,255,255,0.06), transparent 60%),
+                  radial-gradient(900px 500px at 90% 20%, rgba(255,255,255,0.04), transparent 60%),
+                  var(--pageBg);
+      color:var(--pageText);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      -webkit-font-smoothing:antialiased;
+      text-rendering: geometricPrecision;
     }
 
-    /* Ensure layered background stays behind all UI */
-    header, main, section, footer { position: relative; z-index: 1; }
+    /* ====== Topbar ====== */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(7,7,7,0.88), rgba(7,7,7,0.68));
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
 
-    /* Improves select dropdown legibility across browsers */
-    select, option { color: rgba(255,255,255,.95); }
-    select { -webkit-text-fill-color: rgba(255,255,255,.95); line-height: 1.2; }
-    option { background: #0b0b0f; }
+    .topbarInner{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
 
-    /* Focus polish */
-    select:focus {
+    .brandChip{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 180px;
+    }
+
+    .chipLogo{
+      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight:700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 14px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      white-space: nowrap;
+    }
+
+    .chipHint{
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .selectWrap{
+      margin-left:auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      width: min(520px, 100%);
+    }
+
+    label{
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    select{
+      width:100%;
+      height: 44px;
+      font-size: 16px;
+      color: var(--pageText);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 0 44px 0 16px;
       outline: none;
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent 55%), 0 10px 30px rgba(0,0,0,.35);
-    }
-    @supports not (color-mix(in srgb, red, white)) {
-      select:focus { box-shadow: 0 0 0 2px rgba(255,255,255,.18), 0 10px 30px rgba(0,0,0,.35); }
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      appearance: none;
+      -webkit-appearance: none;
     }
 
-    .font-headline { font-family: var(--fontHead); }
-    .font-mono { font-family: var(--fontMono); }
+    .selectWrap{ position:relative; }
+    .selectWrap::after{
+      content:"▾";
+      position:absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.70);
+      pointer-events:none;
+      font-size: 16px;
+    }
 
-    .scanline {
+    /* ====== Deck ====== */
+    .deck{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 26px;
+    }
+
+    .slide{
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      background: #0A0A0A;
+      isolation: isolate;
+      scroll-margin-top: 92px;
+    }
+
+    /* Non-destructive textures (scanlines + grain) */
+    .slide::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity: var(--scanOpacity, 0.08);
       background: repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.05) 1px,
+        to bottom,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.05) 1px,
         transparent 1px,
-        transparent 2px
+        transparent 3px
       );
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
-      will-change: transform;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.18);
-      box-shadow: 0 14px 40px rgba(0,0,0,.45);
-    }
-
-    .nav-dot { transition: all 0.3s; }
-    .nav-dot.active { background-color: var(--accent); animation: dotPulse 1.6s ease-in-out infinite; }
-
-    @keyframes dotPulse {
-      0%, 100% { transform: scale(1); opacity: .95; }
-      50% { transform: scale(1.35); opacity: .70; }
-    }
-
-    .pill {
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      border-radius: 9999px;
-      padding: 6px 10px;
-      font-size: 12px;
-      color: rgba(255,255,255,.78);
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-    }
-    .pill:hover {
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.22);
-      background: rgba(255,255,255,.08);
-    }
-
-    .color-swatch { transition: transform 0.2s, box-shadow 0.2s; }
-    .color-swatch:hover { transform: scale(1.02); box-shadow: 0 14px 40px rgba(0,0,0,.45); }
-
-    @keyframes glitch {
-      0% { text-shadow: 2px 0 var(--glitchA), -2px 0 var(--glitchB); }
-      50% { text-shadow: -2px 0 var(--glitchA), 2px 0 var(--glitchB); }
-      100% { text-shadow: 2px 0 var(--glitchA), -2px 0 var(--glitchB); }
-    }
-    .glitch-text { animation: glitch 3s infinite; }
-
-    /* Subtle neon glow utility (used for Nostalgic Neon title sample) */
-    .neon-glow {
-      text-shadow:
-        0 0 12px color-mix(in srgb, var(--accent) 60%, transparent 40%),
-        0 0 28px color-mix(in srgb, var(--accent2) 40%, transparent 60%);
-    }
-
-    @supports not (color-mix(in srgb, red, white)) {
-      .neon-glow { text-shadow: 0 0 18px var(--accent), 0 0 36px var(--accent2); }
-    }
-
-    .fade-enter { opacity: 0; transform: translateY(6px); }
-    .fade-enter-active { opacity: 1; transform: translateY(0); transition: all 250ms ease; }
-
-    .section { scroll-margin-top: 84px; }
-    @media (max-width: 640px) { .section { scroll-margin-top: 128px; } }
-
-    .kbd {
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      padding: 2px 8px;
-      border-radius: 8px;
-      font-size: 12px;
-    }
-
-    /* Make the header safe-area aware on iOS */
-    header { padding-top: env(safe-area-inset-top); }
-
-    /* =========================
-       Background texture layers
-       ========================= */
-    .bg-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Base noise (film grain) */
-    .bg-noise {
-      opacity: var(--noiseOpacity);
       mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-      animation: grainShift 8s steps(10) infinite;
-      will-change: transform;
+      z-index: 3;
     }
 
-    @keyframes grainShift {
-      0% { transform: translate3d(0,0,0); }
-      10% { transform: translate3d(-1%, -2%, 0); }
-      20% { transform: translate3d(-3%, 1%, 0); }
-      30% { transform: translate3d(2%, -1%, 0); }
-      40% { transform: translate3d(-2%, 3%, 0); }
-      50% { transform: translate3d(-4%, -2%, 0); }
-      60% { transform: translate3d(3%, 2%, 0); }
-      70% { transform: translate3d(1%, -3%, 0); }
-      80% { transform: translate3d(-1%, 2%, 0); }
-      90% { transform: translate3d(2%, 1%, 0); }
-      100% { transform: translate3d(0,0,0); }
-    }
-
-    /* Theme glow (slow drift) */
-    .bg-glow {
-      opacity: var(--glowOpacity);
-      filter: blur(0px);
-      transform: translate3d(0,0,0);
-      will-change: transform, opacity;
-      animation: glowDrift 14s ease-in-out infinite;
-    }
-    @keyframes glowDrift {
-      0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: var(--glowOpacity); }
-      50% { transform: translate3d(0,-1.5%,0) scale(1.02); opacity: calc(var(--glowOpacity) + 0.06); }
-    }
-
-    /* Pattern layer (per-theme) */
-    .bg-texture {
-      opacity: var(--textureOpacity);
-      background-size: 100% 100%;
-      will-change: background-position, opacity, transform;
-    }
-
-    /* Shared subtle vignette */
-    .bg-vignette {
-      background: radial-gradient(80% 70% at 50% 35%, rgba(255,255,255,.06), transparent 60%),
-                  radial-gradient(120% 120% at 50% 30%, transparent 30%, rgba(0,0,0,.55) 70%);
-      opacity: .55;
-    }
-
-    @keyframes scanMove {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 0 240px, 0 0; }
-    }
-    @keyframes dotDrift {
-      0% { background-position: 0 0; }
-      100% { background-position: 120px 80px; }
-    }
-    @keyframes vhsFlicker {
-      0%, 100% { opacity: var(--textureOpacity); }
-      45% { opacity: calc(var(--textureOpacity) + 0.05); }
-      50% { opacity: calc(var(--textureOpacity) - 0.06); }
-      55% { opacity: calc(var(--textureOpacity) + 0.04); }
-    }
-
-    /* ===== Theme-specific texture recipes ===== */
-    body[data-theme="signal"] .bg-texture {
+    .slide::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      pointer-events:none;
+      opacity: var(--grainOpacity, 0.06);
       background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.08) 0 1px, transparent 1px 3px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 120px);
-      animation: scanMove 10s linear infinite;
-    }
-    body[data-theme="signal"] .bg-glow {
-      background:
-        radial-gradient(55% 45% at 18% 20%, color-mix(in srgb, var(--accent2) 60%, transparent 40%), transparent 60%),
-        radial-gradient(60% 55% at 80% 28%, color-mix(in srgb, var(--accent3) 55%, transparent 45%), transparent 62%);
-    }
-
-    body[data-theme="interface"] .bg-texture {
-      background-image:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,.12) 1px, transparent 1px);
-      background-size: 28px 28px;
-      animation: dotDrift 18s linear infinite;
-      opacity: 0.12;
-    }
-    body[data-theme="interface"] .bg-glow {
-      background:
-        radial-gradient(60% 50% at 22% 25%, color-mix(in srgb, var(--accent3) 55%, transparent 45%), transparent 62%),
-        radial-gradient(50% 40% at 78% 22%, color-mix(in srgb, var(--accent2) 45%, transparent 55%), transparent 60%);
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.22) 0.5px, transparent 1.2px),
+        radial-gradient(circle at 70% 65%, rgba(255,255,255,0.18) 0.6px, transparent 1.4px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.14) 0.7px, transparent 1.6px);
+      background-size: 90px 90px, 110px 110px, 130px 130px;
+      transform: rotate(2deg);
+      mix-blend-mode: soft-light;
+      z-index: 2;
+      animation: grainDrift 8s ease-in-out infinite alternate;
     }
 
-    body[data-theme="timeline"] .bg-texture {
-      background-image:
-        linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-        repeating-linear-gradient(90deg, rgba(0,0,0,.08) 0 1px, transparent 1px 160px);
-      opacity: 0.12;
-    }
-    body[data-theme="timeline"] .bg-glow {
-      background:
-        radial-gradient(65% 55% at 22% 24%, color-mix(in srgb, var(--accent3) 35%, transparent 65%), transparent 65%),
-        radial-gradient(55% 45% at 78% 24%, color-mix(in srgb, var(--accent) 28%, transparent 72%), transparent 62%);
-      opacity: 0.18;
+    @keyframes grainDrift{
+      from { transform: translate3d(-8px, -6px, 0) rotate(2deg); }
+      to   { transform: translate3d(8px, 6px, 0) rotate(2deg); }
     }
 
-    body[data-theme="vhs"] .bg-texture {
-      background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 220px),
-        linear-gradient(90deg,
-          color-mix(in srgb, var(--accent2) 14%, transparent 86%),
-          transparent 22%,
-          color-mix(in srgb, var(--accent3) 10%, transparent 90%),
-          transparent 68%
-        );
-      animation: scanMove 9s linear infinite, vhsFlicker 5.5s steps(8) infinite;
-    }
-    body[data-theme="vhs"] .bg-glow {
-      background:
-        radial-gradient(60% 55% at 18% 22%, color-mix(in srgb, var(--accent2) 50%, transparent 50%), transparent 62%),
-        radial-gradient(55% 48% at 82% 24%, color-mix(in srgb, var(--accent3) 45%, transparent 55%), transparent 60%);
+    .slideInner{
+      position: relative;
+      z-index: 4;
+      padding: 28px;
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      min-height: 560px;
     }
 
-    body[data-theme="nostalgic"] .bg-texture {
-      background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 4px),
-        radial-gradient(70% 50% at 30% 30%, color-mix(in srgb, var(--accent) 22%, transparent 78%), transparent 65%),
-        radial-gradient(55% 45% at 70% 26%, color-mix(in srgb, var(--accent2) 22%, transparent 78%), transparent 62%);
-      animation: vhsFlicker 7s steps(10) infinite;
-      opacity: 0.14;
-    }
-    body[data-theme="nostalgic"] .bg-glow {
-      background:
-        radial-gradient(70% 60% at 24% 22%, color-mix(in srgb, var(--accent2) 60%, transparent 40%), transparent 64%),
-        radial-gradient(65% 55% at 80% 26%, color-mix(in srgb, var(--accent3) 55%, transparent 45%), transparent 62%),
-        radial-gradient(55% 45% at 52% 10%, color-mix(in srgb, var(--accent) 35%, transparent 65%), transparent 60%);
-      opacity: 0.26;
+    /* subtle entrance */
+    .slide{ opacity:0; transform: translateY(14px); }
+    .slide.ready{ opacity:1; transform:none; transition: opacity .45s ease, transform .45s ease; }
+
+    /* Left */
+    .eyebrow{
+      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 18px;
     }
 
-    body[data-theme="pop"] .bg-texture {
-      background-image:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,.13) 1px, transparent 1px),
-        repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 2px, transparent 2px 10px);
-      background-size: 26px 26px, 140px 140px;
-      animation: dotDrift 22s linear infinite;
-      opacity: 0.10;
-    }
-    body[data-theme="pop"] .bg-glow {
-      background:
-        radial-gradient(60% 52% at 24% 22%, color-mix(in srgb, var(--accent2) 25%, transparent 75%), transparent 65%),
-        radial-gradient(60% 52% at 78% 24%, color-mix(in srgb, var(--accent3) 22%, transparent 78%), transparent 62%);
-      opacity: 0.18;
+    .title{
+      margin:0;
+      font-size: 70px;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
     }
 
-    body[data-theme="street"] .bg-texture {
-      background-image:
-        radial-gradient(circle at 2px 2px, rgba(255,255,255,.11) 1.1px, transparent 1.2px),
-        repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 6px);
-      background-size: 34px 34px, 100% 100%;
-      animation: scanMove 12s linear infinite;
-      opacity: 0.12;
-    }
-    body[data-theme="street"] .bg-glow {
-      background:
-        radial-gradient(65% 55% at 22% 25%, color-mix(in srgb, var(--accent) 26%, transparent 74%), transparent 66%),
-        radial-gradient(55% 45% at 80% 25%, color-mix(in srgb, var(--accent3) 22%, transparent 78%), transparent 62%);
-      opacity: 0.16;
+    .desc{
+      margin: 16px 0 18px;
+      font-size: 22px;
+      line-height: 1.25;
+      color: rgba(255,255,255,0.80);
+      max-width: 46ch;
     }
 
-    /* Scroll hint animation */
-    .scroll-bounce { animation: scrollBounce 1.8s ease-in-out infinite; }
-    @keyframes scrollBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
+    .rule{
+      height: 10px;
+      width: 100%;
+      border-radius: 999px;
+      margin: 16px 0 28px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.30), 0 12px 26px rgba(0,0,0,0.40);
     }
 
-    /* Accent bar pulse for motion-heavy themes */
-    @keyframes barPulse {
-      0%, 100% { transform: scaleX(1); opacity: 1; }
-      50% { transform: scaleX(0.92); opacity: .85; }
-    }
-    body[data-theme="vhs"] #coverBar,
-    body[data-theme="nostalgic"] #coverBar {
-      transform-origin: left center;
-      animation: barPulse 2.4s ease-in-out infinite;
+    .typoLabel{
+      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 10px;
     }
 
-    /* Reduce motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-      .bg-layer { display: none !important; }
+    .typoCard{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 18px 18px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      max-width: 620px;
     }
 
-    /* Print styles: keep backgrounds visible in Chrome */
-    @media print {
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      header { position: static !important; }
-      .scanline { background: none !important; }
-      .bg-layer { display: none !important; }
+    .typoRow{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items:baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+
+    .typoRow:last-child{ border-bottom:0; }
+
+    .typoKey{
+      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--accentText, #FFFF00);
+    }
+
+    .typoVal{
+      font-size: 18px;
+      color: rgba(255,255,255,0.88);
+    }
+
+    /* Right */
+    .paletteTitle{
+      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 10px;
+    }
+
+    .swatches{
+      display:flex;
+      gap:0; /* attached together */
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .swatch{
+      flex: 1 1 0;
+      min-width: 74px;
+      height: 170px;
+      position:relative;
+    }
+
+    .swatchCode{
+      position:absolute;
+      left: 10px;
+      bottom: 10px;
+      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      letter-spacing: .06em;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.35);
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .wordmarkWrap{
+      margin-top: 18px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 18px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .wordmark{
+      display:flex;
+      align-items:baseline;
+      gap: 0;
+      font-size: 74px;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      user-select:none;
+      filter: drop-shadow(0 22px 34px rgba(0,0,0,0.50));
+    }
+
+    .wmA{ color: var(--primary); }
+    .wmB{ color: var(--secondary); }
+
+    /* Glitch-ish hover (subtle) */
+    .wordmark:hover{
+      text-shadow:
+        2px 0 0 rgba(255,0,0,0.25),
+        -2px 0 0 rgba(0,255,255,0.22);
+      transform: translateY(-1px);
+      transition: text-shadow .18s ease, transform .18s ease;
+    }
+
+    .wordmarkMeta{
+      margin-top: 10px;
+      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.68);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .slideInner{ grid-template-columns: 1fr; min-height: unset; }
+      .title{ font-size: 56px; }
+      .desc{ font-size: 20px; }
+      .wordmark{ font-size: 62px; }
+      .brandChip{ min-width: unset; }
+      .chipHint{ display:none; }
+    }
+
+    @media (max-width: 560px){
+      .topbarInner{ flex-wrap: wrap; gap: 10px; }
+      .selectWrap{ width: 100%; margin-left: 0; }
+      label{ display:none; }
+      .slideInner{ padding: 18px; }
+      .title{ font-size: 44px; }
+      .desc{ font-size: 18px; }
+      .swatch{ min-width: 64px; height: 150px; }
+      .wordmark{ font-size: 52px; }
+      .typoRow{ grid-template-columns: 100px 1fr; }
+    }
+
+    /* Light slides get automatic contrast */
+    .slide.isLight .eyebrow,
+    .slide.isLight .desc,
+    .slide.isLight .paletteTitle,
+    .slide.isLight .typoLabel,
+    .slide.isLight .typoVal,
+    .slide.isLight .wordmarkMeta{
+      color: rgba(0,0,0,0.72);
+    }
+
+    .slide.isLight .typoCard,
+    .slide.isLight .wordmarkWrap{
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24);
+    }
+
+    .slide.isLight .typoRow{ border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .slide.isLight .swatches{ border: 1px solid rgba(0,0,0,0.10); }
+    .slide.isLight .swatchCode{ background: rgba(255,255,255,0.70); color: rgba(0,0,0,0.85); border: 1px solid rgba(0,0,0,0.10); }
+    .slide.isLight .wordmark:hover{
+      text-shadow:
+        2px 0 0 rgba(255,0,0,0.18),
+        -2px 0 0 rgba(0,255,255,0.18);
+    }
+
+    /* Debug/test panel (hidden by default) */
+    #testOutput{
+      display:none;
+      max-width: var(--max);
+      margin: 10px auto 0;
+      padding: 10px 18px;
+      color: rgba(255,255,255,0.78);
+      font-family: JetBrains Mono, ui-monospace, monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+
   </style>
 </head>
 
 <body>
-  <!-- Background layers (theme-aware). These sit behind all UI. -->
-  <div class="bg-layer bg-glow" id="bgGlow" aria-hidden="true"></div>
-  <div class="bg-layer bg-texture" id="bgTexture" aria-hidden="true"></div>
-  <div class="bg-layer bg-noise" id="bgNoise" aria-hidden="true"></div>
-  <div class="bg-layer bg-vignette" id="bgVignette" aria-hidden="true"></div>
-  <!-- Fixed Header -->
-  <header class="fixed top-0 left-0 right-0 backdrop-blur-sm z-50" style="background: rgba(0,0,0,.85); border-bottom: 1px solid rgba(255,255,255,.10);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 w-full sm:w-auto min-w-0">
-        <div class="font-headline font-black text-lg md:text-xl tracking-tight">
-          <span class="glitch-text" id="brandTitle">BRAND PITCH</span>
-        </div>
-        <span class="pill font-mono max-w-full break-words sm:truncate" id="directionBadge">DIRECTION: SIGNAL/NOISE</span>
+  <header class="topbar">
+    <div class="topbarInner">
+      <div class="brandChip">
+        <div class="chipLogo">BRAND PITCH</div>
+        <div class="chipHint">one slide per theme • jump via dropdown</div>
       </div>
 
-      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
-        <div class="hidden md:flex items-center gap-2 text-xs" style="color: var(--muted2);">
-          <span class="kbd font-mono">⌘K</span>
-          <span>Jump</span>
-        </div>
-
-        <label class="sr-only" for="directionSelect">Select design direction</label>
-        <div class="relative w-full sm:w-[280px] lg:w-[320px]">
-          <!-- ✅ Mobile-friendly + smaller dropdown -->
-          <select
-            id="directionSelect"
-            class="w-full h-10 sm:h-10 appearance-none rounded-lg border px-3 pr-9 font-mono text-sm focus:outline-none focus:ring-2"
-            style="background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); box-shadow: 0 10px 30px rgba(0,0,0,.35);"
-          ></select>
-
-          <svg aria-hidden="true" class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 8L10 12L14 8" stroke="rgba(255,255,255,.75)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-
-        <nav class="hidden sm:flex gap-2">
-          <a href="#overview" class="nav-dot w-2 h-2 rounded-full" style="background: rgba(255,255,255,.30)"></a>
-          <a href="#palette" class="nav-dot w-2 h-2 rounded-full" style="background: rgba(255,255,255,.30)"></a>
-          <a href="#type" class="nav-dot w-2 h-2 rounded-full" style="background: rgba(255,255,255,.30)"></a>
-          <a href="#system" class="nav-dot w-2 h-2 rounded-full" style="background: rgba(255,255,255,.30)"></a>
-          <a href="#tokens" class="nav-dot w-2 h-2 rounded-full" style="background: rgba(255,255,255,.30)"></a>
-        </nav>
+      <div class="selectWrap">
+        <label for="themeSelect">Direction</label>
+        <select id="themeSelect" aria-label="Select brand direction"></select>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center scanline relative overflow-hidden pt-28 sm:pt-24 pb-10">
-    <div class="absolute inset-0" id="heroGlow" style="background: linear-gradient(to bottom, transparent, rgba(34,211,238,.06), transparent);"></div>
-    <div class="max-w-4xl mx-auto text-center z-10 px-6">
-      <p class="font-mono text-sm mb-4" style="color: var(--accent);">PITCH PAGE • PICK A DIRECTION</p>
-      <h1 class="font-headline font-black text-5xl md:text-7xl tracking-tight mb-6" id="heroTitle">SIGNAL / NOISE</h1>
-      <p class="text-lg md:text-xl max-w-3xl mx-auto" style="color: var(--muted);" id="heroSubtitle">
-        Broadcasting across time — a transmission aesthetic where generations are signals finding each other through interference.
-      </p>
+  <div id="testOutput"></div>
 
-      <!-- ✅ Removed hero CTA buttons (per request). Keep a lightweight hint instead. -->
-      <div class="mt-10 flex items-center justify-center">
-        <span class="pill font-mono scroll-bounce">Scroll ↓</span>
-      </div>
-
-      <div class="mt-10 flex flex-wrap justify-center gap-2" id="heroPills"></div>
-    </div>
-  </section>
-
-  <!-- Main -->
-  <main class="bg-gradient-to-b from-black to-neutral-950">
-
-    <!-- Overview -->
-    <section id="overview" class="section py-24">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="font-mono text-sm mb-4" style="color: var(--accent);">01 / OVERVIEW</div>
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-          <div>
-            <h2 class="font-headline font-black text-4xl md:text-5xl" id="dirName">Signal / Noise</h2>
-            <p class="mt-3 max-w-3xl" style="color: var(--muted);" id="dirIdeology">
-              Broadcast UI, scanlines, static, frequency overlap. It feels like tuning into a signal that’s mid‑transmission.
-            </p>
-          </div>
-          <!-- ✅ Removed overview buttons (Approve / Download) per request -->
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6" id="overviewCards">
-          <!-- Filled by JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Palette -->
-    <section id="palette" class="section py-24 bg-black">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="font-mono text-sm mb-4" style="color: var(--accent);">02 / PALETTE</div>
-        <h2 class="font-headline font-black text-4xl md:text-5xl mb-10">Color System</h2>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" id="paletteGrid"></div>
-
-        <div class="mt-8 card p-6">
-          <div class="font-mono text-xs mb-2" style="color: var(--accent);">USAGE RULES</div>
-          <ul class="grid md:grid-cols-2 gap-3" style="color: var(--muted);" id="paletteRules"></ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Typography -->
-    <section id="type" class="section py-24">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="font-mono text-sm mb-4" style="color: var(--accent);">03 / TYPOGRAPHY</div>
-        <h2 class="font-headline font-black text-4xl md:text-5xl mb-10">Type System</h2>
-
-        <div class="grid lg:grid-cols-2 gap-6">
-          <div class="card p-8 scanline">
-            <div class="font-mono text-xs mb-4" style="color: var(--accent);">HEADLINE</div>
-            <div class="font-headline font-black text-4xl md:text-5xl" id="typeHeadlineSample">SPACE GROTESK BLACK</div>
-            <div class="mt-6 font-mono text-xs mb-4" style="color: var(--accent);">BODY</div>
-            <p class="text-lg" id="typeBodySample" style="color: var(--muted);">Inter Regular — clean, readable, modern sans-serif for long listens and long reads.</p>
-            <div class="mt-6 font-mono text-xs mb-4" style="color: var(--accent);">ACCENT / META</div>
-            <p class="font-mono text-lg" id="typeMonoSample" style="color: rgba(255,255,255,.92);">REC ● 00:00:00  |  EP 012  |  PILLAR 01</p>
-          </div>
-
-          <div class="card p-8">
-            <div class="font-mono text-xs mb-2" style="color: var(--accent);">HIERARCHY</div>
-            <div class="grid gap-4" id="typeHierarchy"></div>
-            <div class="mt-8">
-              <div class="font-mono text-xs mb-2" style="color: var(--accent);">RULES</div>
-              <ul class="grid gap-3" style="color: var(--muted);" id="typeRules"></ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- System -->
-    <section id="system" class="section py-24 bg-black">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="font-mono text-sm mb-4" style="color: var(--accent);">04 / GRAPHIC SYSTEM</div>
-        <h2 class="font-headline font-black text-4xl md:text-5xl mb-10">Motifs + Layout + Templates</h2>
-
-        <div class="grid lg:grid-cols-3 gap-6">
-          <div class="card p-7">
-            <div class="font-mono text-xs mb-3" style="color: var(--accent);">MOTIFS</div>
-            <ul class="grid gap-2" id="motifs" style="color: var(--muted);"></ul>
-          </div>
-          <div class="card p-7">
-            <div class="font-mono text-xs mb-3" style="color: var(--accent);">LAYOUT RULES</div>
-            <ul class="grid gap-2" id="layoutRules" style="color: var(--muted);"></ul>
-          </div>
-          <div class="card p-7">
-            <div class="font-mono text-xs mb-3" style="color: var(--accent);">BEST FOR</div>
-            <ul class="grid gap-2" id="bestFor" style="color: var(--muted);"></ul>
-          </div>
-        </div>
-
-        <div class="mt-8 grid md:grid-cols-2 gap-6">
-          <div class="card p-7">
-            <div class="flex items-center justify-between mb-4">
-              <div class="font-mono text-xs" style="color: var(--accent);">COVER PREVIEW</div>
-              <div class="font-mono text-xs" style="color: var(--muted2);">3000×3000</div>
-            </div>
-            <div class="aspect-square rounded-xl overflow-hidden border" style="border-color: rgba(255,255,255,.10);">
-              <div class="h-full scanline relative" id="coverPreview" style="background: #0b0b0f;">
-                <div class="absolute inset-0" id="coverOverlay"></div>
-                <div class="absolute top-6 left-6 right-6">
-                  <div class="font-headline font-black text-3xl leading-tight" id="coverTitle">BETWEEN<br/>GENERATIONS</div>
-                  <div class="font-mono text-xs mt-3" id="coverMeta" style="color: var(--accent);">REC ● 00:00:00 • EP 001</div>
-                </div>
-                <div class="absolute bottom-6 left-6 right-6">
-                  <div class="h-3 rounded" id="coverBar" style="background: var(--accent3);"></div>
-                  <div class="flex items-center justify-between mt-3" style="color: var(--muted2);">
-                    <div class="font-mono text-xs" id="coverHosts">HOST A × HOST B</div>
-                    <div class="font-mono text-xs" id="coverTag">WHAT’S BREAKING. WHAT’S EMERGING.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card p-7">
-            <div class="flex items-center justify-between mb-4">
-              <div class="font-mono text-xs" style="color: var(--accent);">SOCIAL PREVIEW</div>
-              <div class="font-mono text-xs" style="color: var(--muted2);">IG / YT / LI</div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-3">
-              <div class="rounded-xl overflow-hidden border" style="border-color: rgba(255,255,255,.10);">
-                <div class="aspect-square p-3 scanline" id="igPreview" style="background: #0b0b0f;">
-                  <div class="font-mono text-[10px]" style="color: var(--accent);">NEW EP</div>
-                  <div class="font-headline font-black text-sm mt-2" id="igTitle">THE MOMENT</div>
-                  <div class="mt-2 h-2 rounded" style="background: var(--accent2);"></div>
-                  <div class="font-mono text-[10px] mt-2" style="color: var(--muted2);">EP 012</div>
-                </div>
-              </div>
-              <div class="rounded-xl overflow-hidden border" style="border-color: rgba(255,255,255,.10);">
-                <div class="aspect-square p-3" id="reelPreview" style="background: rgba(255,255,255,.06);">
-                  <div class="font-mono text-[10px]" style="color: var(--accent);">STORY</div>
-                  <div class="font-headline font-black text-sm mt-2" id="reelTitle">WHY THIS MATTERS</div>
-                  <div class="mt-3 font-mono text-[10px]" style="color: var(--muted2);">Swipe → Listen</div>
-                </div>
-              </div>
-              <div class="rounded-xl overflow-hidden border" style="border-color: rgba(255,255,255,.10);">
-                <div class="aspect-square p-3" id="ytPreview" style="background: rgba(255,255,255,.06);">
-                  <div class="font-mono text-[10px]" style="color: var(--accent);">YOUTUBE</div>
-                  <div class="font-headline font-black text-sm mt-2" id="ytTitle">3 THINGS WE LEARNED</div>
-                  <div class="mt-2 h-2 rounded" style="background: var(--accent3);"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6">
-              <div class="font-mono text-xs mb-3" style="color: var(--accent);">TEMPLATE RULES</div>
-              <ul class="grid gap-2" id="templateRules" style="color: var(--muted);"></ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Tokens -->
-    <section id="tokens" class="section py-24">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="font-mono text-sm mb-4" style="color: var(--accent);">05 / TOKENS</div>
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-          <h2 class="font-headline font-black text-4xl md:text-5xl">Copy‑Paste Design Tokens</h2>
-          <button id="copyTokens" class="pill font-mono text-sm" style="padding: 10px 14px;">Copy tokens</button>
-        </div>
-
-        <div class="card p-8 font-mono text-sm overflow-x-auto">
-          <pre id="tokensPre" class="text-white/85"></pre>
-        </div>
-
-        <div class="mt-10 card p-8">
-          <div class="font-mono text-xs mb-3" style="color: var(--accent);">NOTES FOR CLIENT REVIEW</div>
-          <ul class="grid md:grid-cols-2 gap-3" style="color: var(--muted);" id="clientNotes"></ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t py-12" style="border-color: rgba(255,255,255,.10);">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <p class="font-mono text-sm" style="color: var(--accent);">BRAND PITCH PAGE</p>
-        <p class="text-sm mt-2" style="color: var(--muted2);">Choose a direction → review the system → copy tokens.</p>
-      </div>
-    </footer>
-
-  </main>
+  <main id="deck" class="deck" aria-label="Brand direction slide deck"></main>
 
   <script>
-    /**
-     * Framework data model (what clients choose from).
-     * Curated to ONLY the directions you want:
-     * Keep: Signal/Noise, Interface Futures, Timeline Collision, VHS Night Drive
-     * Add: Nostalgic Neon, Pop Collision, Street Culture
-     */
-    const DIRECTIONS = {
-      signal: {
-        id: 'signal',
-        label: 'Signal / Noise',
+    // ===== Theme data (7 themes) =====
+    // Note: Each theme includes bg/text so slides can be dark OR light.
+    const THEMES = [
+      {
+        id: "signal-noise",
+        name: "SIGNAL / NOISE",
         recommended: true,
-        heroTitle: 'SIGNAL / NOISE',
-        heroSubtitle: 'Broadcasting across time — a transmission aesthetic where generations are signals finding each other through interference.',
-        pills: ['Transmission', 'Scanlines', 'Static', 'Frequency overlap', 'Human-first', 'High contrast'],
-        ideology: 'Broadcasting across time. The aesthetic of transmission — radio waves, static, scanning, frequency overlap. Generations as signals finding each other through interference.',
-        colors: [
-          { name: 'Frequency Blue', hex: '#0066FF', role: 'Primary' },
-          { name: 'Signal Orange', hex: '#FF3D00', role: 'Primary' },
-          { name: 'Scan Yellow', hex: '#FFFF00', role: 'Accent' },
-          { name: 'Void Black', hex: '#0A0A0A', role: 'Base' },
-        ],
-        paletteRules: [
-          'Keep backgrounds near-black; let accents do the talking.',
-          'Use Yellow for “live” states, highlights, nav active, timestamps.',
-          'Use Blue/Orange for tension + collision moments (titles, bars, dividers).',
-          'Never use all three accents at equal weight; pick a “lead accent” per asset.',
-        ],
-        type: {
-          headline: 'Space Grotesk Black',
-          body: 'Inter Regular — clean, readable, modern sans-serif',
-          mono: 'JetBrains Mono — interface-like meta labels',
-          hierarchy: [
-            { label: 'H1', value: '64–96 / ALL CAPS / tight tracking', desc: 'Cover + hero titles' },
-            { label: 'H2', value: '28–40 / sentence case', desc: 'Subheads + topic lines' },
-            { label: 'META', value: '12–16 / mono / uppercase', desc: 'EP #, timestamps, pillar labels' },
-          ],
-          rules: [
-            'Headlines: heavy, condensed feel; keep to 2–5 words where possible.',
-            'Meta: monospace + separators (• | /) to feel “interface”.',
-            'Avoid decorative fonts; this direction is about signal clarity.',
-          ],
+        description: "Broadcast UI + scanlines + frequency overlap — modern‑retro, high contrast.",
+        colors: {
+          primary: "#0066FF",     // frequencyBlue
+          secondary: "#FF3D00",   // signalOrange
+          accent: "#FFFF00",      // scanYellow
+          bg: "#0A0A0A",          // voidBlack
+          text: "#F8F8F8",        // ghostWhite
+          neutral: "#666666"      // staticGray
         },
-        system: {
-          motifs: ['Scanline overlays (subtle)', 'Waveforms / frequency bars', 'Grid overlays (oscilloscope UI)', 'Controlled RGB offset / glitch', 'Timestamps, REC indicators, labels'],
-          layoutRules: ['One dominant headline block, one secondary meta block.', 'Use strong left alignment; allow intentional crop on large type.', 'Accents appear as bars/blocks, not random splashes.', 'Texture stays low opacity; readability first.'],
-          bestFor: ['Tech/culture commentary podcasts', 'Bold, modern positioning', 'Thumbnail-heavy platforms (Spotify/YT)'],
-          templateRules: ['Keep title legible at 55×55: max 2 lines.', 'Use one accent bar per asset (Orange or Blue).', 'Use Yellow for nav/active states only.'],
+        typography: {
+          headline: "Space Grotesk (700–900)",
+          body: "Inter (400–600)",
+          meta: "JetBrains Mono (400–700)",
+          headlineFamily: "Space Grotesk",
+          bodyFamily: "Inter",
+          metaFamily: "JetBrains Mono"
         },
-        tokens: {
-          colors: {
-            frequencyBlue: '#0066FF',
-            signalOrange: '#FF3D00',
-            scanYellow: '#FFFF00',
-            voidBlack: '#0A0A0A',
-            ghostWhite: '#F8F8F8',
-            staticGray: '#666666',
-          },
-          typography: {
-            headline: { family: 'Space Grotesk', weights: [700, 900] },
-            body: { family: 'Inter', weights: [400, 500, 600] },
-            monospace: { family: 'JetBrains Mono', weights: [400, 700] },
-          },
-          spacing: { unit: 4, scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128] },
-          textures: {
-            scanline: { spacing: '2px', opacity: '0.05–0.10' },
-            rgbOffset: { redShift: '2px right', cyanShift: '2px left' },
-            grain: { opacity: '0.03–0.08' },
-          },
-        },
-        clientNotes: [
-          'If your audience is Gen Z + Millennials, this reads instantly “current”.',
-          'Works best when episode titles are short and punchy.',
-          'If you want warmer / more human-first, pair with more photography later.',
-          'Avoid over-glitching; it should feel premium, not chaotic.',
-        ],
-        accents: {
-          accent: '#FFFF00',
-          accent2: '#0066FF',
-          accent3: '#FF3D00',
-          glitchA: '#0066FF',
-          glitchB: '#FF3D00',
-          heroGlow: 'rgba(0,102,255,.06)',
-          coverOverlay: 'linear-gradient(to bottom, rgba(0,102,255,.07), transparent 45%, rgba(255,61,0,.06))',
-        },
+        textures: { scanOpacity: 0.10, grainOpacity: 0.07 }
       },
 
-      interface: {
-        id: 'interface',
-        label: 'Interface Futures',
+      {
+        id: "interface-futures",
+        name: "INTERFACE FUTURES",
         recommended: false,
-        heroTitle: 'INTERFACE FUTURES',
-        heroSubtitle: 'The podcast as an operating system — windows, tabs, menus representing perspectives running simultaneously.',
-        pills: ['OS metaphor', 'Windows', 'Tabs', 'Neon UI', 'System thinking', 'Clean grid'],
-        ideology: 'The podcast as a new operating system. UI primitives become metaphors: windows, tabs, menus, states — different timelines running simultaneously.',
-        colors: [
-          { name: 'Electric Violet', hex: '#7B2CBF', role: 'Primary' },
-          { name: 'Highlight Yellow', hex: '#FFD60A', role: 'Accent' },
-          { name: 'Terminal Green', hex: '#06FFA5', role: 'Accent' },
-          { name: 'UI Black', hex: '#0F0F0F', role: 'Base' },
-        ],
-        paletteRules: [
-          'Black base with neon accents; keep neon usage intentional.',
-          'Use violet as the main brand anchor; yellow/green as UI states.',
-          'Neons should not sit behind body text (use for lines, badges, bars).',
-          'Avoid gradients everywhere; keep them to hero/cover only.',
-        ],
-        type: {
-          headline: 'Syne ExtraBold',
-          body: 'DM Sans — UI-friendly, clean',
-          mono: 'IBM Plex Mono — technical, readable',
-          hierarchy: [
-            { label: 'H1', value: '64–92 / bold / wide', desc: 'OS-like title bars' },
-            { label: 'H2', value: '28–36 / calm', desc: 'Section titles' },
-            { label: 'META', value: '12–16 / mono', desc: 'Tabs, states, labels' },
-          ],
-          rules: [
-            'Treat titles like “window headers” (boxed, aligned).',
-            'Meta text is part of the design; keep it consistent.',
-            'Avoid too much glitch; keep it crisp like software.',
-          ],
+        description: "HUD overlays + grid systems + terminal prompts — clean, speculative, built for clarity.",
+        colors: {
+          primary: "#5B2EFF",     // deepViolet
+          secondary: "#00E5FF",   // holoCyan
+          accent: "#A3FF12",      // neonLime
+          bg: "#0B0F1A",          // carbon
+          text: "#EAF0FF",        // fog
+          neutral: "#5D6476"      // uiGray
         },
-        system: {
-          motifs: ['Window frames + tab bars', 'Cursor/caret indicators', 'Grid + dotted dividers', 'UI badges (state chips)', 'Minimal icons (system set)'],
-          layoutRules: ['Use modular boxes; content flows in panels.', 'Highlight the “active tab” with yellow.', 'Use green for “build/solution” segments.', 'Keep margins generous; this is “clean UI”.'],
-          bestFor: ['Tech + future-of-work', 'Founder/creator audiences', 'Highly structured episode formats'],
-          templateRules: ['Each asset has an “active state” and “inactive state”.', 'Use violet consistently for brand anchors.', 'Don’t mix all neons equally — choose one lead.'],
+        typography: {
+          headline: "Syne (700–800)",
+          body: "DM Sans (400–700)",
+          meta: "IBM Plex Mono (400–600)",
+          headlineFamily: "Syne",
+          bodyFamily: "DM Sans",
+          metaFamily: "IBM Plex Mono"
         },
-        tokens: {
-          colors: { violet: '#7B2CBF', highlightYellow: '#FFD60A', terminalGreen: '#06FFA5', uiBlack: '#0F0F0F', uiGray: '#1C1C1C' },
-          typography: {
-            headline: { family: 'Syne', weights: [700, 800] },
-            body: { family: 'DM Sans', weights: [400, 500, 700] },
-            monospace: { family: 'IBM Plex Mono', weights: [400, 700] },
-          },
-          spacing: { unit: 4, scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128] },
-          components: { windowRadius: 14, border: '1px solid rgba(255,255,255,.12)', shadow: '0 10px 30px rgba(0,0,0,.55)' },
-        },
-        clientNotes: [
-          'Reads as “tech-forward” and structured.',
-          'Great if your show has segments and recurring formats.',
-          'Can feel colder unless we add warmer human photography later.',
-          'Works extremely well as a website UI system too.',
-        ],
-        accents: {
-          accent: '#FFD60A',
-          accent2: '#06FFA5',
-          accent3: '#7B2CBF',
-          glitchA: '#06FFA5',
-          glitchB: '#FFD60A',
-          heroGlow: 'rgba(123,44,191,.08)',
-          coverOverlay: 'linear-gradient(to bottom, rgba(123,44,191,.08), transparent 45%, rgba(6,255,165,.06))',
-        },
+        textures: { scanOpacity: 0.06, grainOpacity: 0.05 }
       },
 
-      timeline: {
-        id: 'timeline',
-        label: 'Timeline Collision',
+      {
+        id: "timeline-collision",
+        name: "TIMELINE COLLISION",
         recommended: false,
-        heroTitle: 'TIMELINE COLLISION',
-        heroSubtitle: 'Past and present exist simultaneously — like a splice between eras. Analog objects meeting digital interfaces.',
-        pills: ['Analog × Digital', 'Editorial', 'Archive', 'Collision point', 'Warm contrast'],
-        ideology: 'Visual time travel. Past and present existing simultaneously — analog artifacts colliding with modern interfaces. The “between” is a splice point.',
-        colors: [
-          { name: 'Analog Red', hex: '#E63946', role: 'Primary' },
-          { name: 'Future Cyan', hex: '#00D9FF', role: 'Primary' },
-          { name: 'Archive Cream', hex: '#F4E8D0', role: 'Base' },
-          { name: 'Deep Black', hex: '#1A1A1A', role: 'Base' },
-        ],
-        paletteRules: [
-          'Cream backgrounds for warmth; black for authority and contrast.',
-          'Red + Cyan should collide in specific anchor elements (dividers, titles).',
-          'Use Cream as breathing space in social layouts.',
-          'Keep cyan away from long paragraphs (use for accents).',
-        ],
-        type: {
-          headline: 'Archivo Black',
-          body: 'Work Sans — geometric, friendly, versatile',
-          mono: 'Courier Prime — typewriter nostalgia',
-          hierarchy: [
-            { label: 'H1', value: '60–90 / bold / poster', desc: 'Covers + episode titles' },
-            { label: 'H2', value: '28–36 / clean', desc: 'Subheads + descriptors' },
-            { label: 'META', value: '12–16 / mono', desc: 'Episode info + dates' },
-          ],
-          rules: [
-            'Lean into contrast: poster headline + calm body.',
-            'Use mono only for timestamps/labels, not long copy.',
-            'Don’t over-stack heavy fonts; keep the system airy.',
-          ],
+        description: "Zine grids + timestamps + archive labels — eras collide, but the system stays readable.",
+        colors: {
+          primary: "#FF2D55",     // collisionRed
+          secondary: "#00D1B2",   // timeTeal
+          accent: "#111111",      // inkBlack
+          bg: "#F4F1E8",          // archiveCream (light)
+          text: "#111111",        // inkBlack
+          neutral: "#6B6B6B"      // graphite
         },
-        system: {
-          motifs: ['Split panels (past/present)', 'Archival textures (paper grain)', 'Stickers/labels + UI windows', 'Splice bars (horizontal/vertical)', 'Venn overlaps (subtle shapes)'],
-          layoutRules: ['Use split layouts: left/right or top/bottom eras.', 'Headline crosses the split — that’s the “collision”.', 'Cream zones hold body copy; black zones hold big titles.', 'Use one strong divider per composition.'],
-          bestFor: ['Culture + society analysis', 'More “human warmth” than purely tech', 'Brands that want to feel timeless + current'],
-          templateRules: ['Keep cream backgrounds consistent across socials.', 'Use red for urgency; cyan for future/solutions.', 'Use bold type less frequently (space is part of the aesthetic).'],
+        typography: {
+          headline: "Archivo Black (caps)",
+          body: "Work Sans (400–700)",
+          meta: "Space Mono (400–700)",
+          headlineFamily: "Archivo Black",
+          bodyFamily: "Work Sans",
+          metaFamily: "Space Mono"
         },
-        tokens: {
-          colors: { analogRed: '#E63946', futureCyan: '#00D9FF', archiveCream: '#F4E8D0', deepBlack: '#1A1A1A', graphite: '#2B2B2B' },
-          typography: {
-            headline: { family: 'Archivo Black', weights: [400] },
-            body: { family: 'Work Sans', weights: [400, 500, 600] },
-            monospace: { family: 'Courier Prime', weights: [400, 700] },
-          },
-          spacing: { unit: 4, scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128] },
-          textures: { paper: { opacity: '0.05–0.12' }, splice: { thickness: '6–12px' } },
-        },
-        clientNotes: [
-          'Feels more “editorial magazine” than “tech UI”.',
-          'Better for long-form storytelling + guest episodes.',
-          'Requires stronger imagery choices to really shine.',
-          'If your show is high-tempo, don’t make it too soft — keep contrasts sharp.',
-        ],
-        accents: {
-          accent: '#00D9FF',
-          accent2: '#F4E8D0',
-          accent3: '#E63946',
-          glitchA: '#00D9FF',
-          glitchB: '#E63946',
-          heroGlow: 'rgba(0,217,255,.06)',
-          coverOverlay: 'linear-gradient(to bottom, rgba(244,232,208,.10), transparent 45%, rgba(230,57,70,.10))',
-        },
+        textures: { scanOpacity: 0.04, grainOpacity: 0.06 }
       },
 
-      vhs: {
-        id: 'vhs',
-        label: 'VHS Night Drive',
+      {
+        id: "vhs-night-drive",
+        name: "VHS NIGHT DRIVE",
         recommended: false,
-        heroTitle: 'VHS NIGHT DRIVE',
-        heroSubtitle: 'Cinematic retro-future — timecode overlays, CRT glow, neon edges. Serious mood with optimistic highlights.',
-        pills: ['Timecode', 'CRT glow', 'Night palette', 'Neon edges', 'Cinematic'],
-        ideology: 'A moody night system that still feels hopeful. Think VHS timecode + CRT glow + neon accents. Great for “what’s breaking / what’s emerging” because it holds tension and warmth at once.',
-        colors: [
-          { name: 'Deep Navy', hex: '#070A12', role: 'Base' },
-          { name: 'CRT Mint', hex: '#3CFFB2', role: 'Primary' },
-          { name: 'Sunset Orange', hex: '#FF6A00', role: 'Accent' },
-          { name: 'Soft Fog', hex: '#E6E8F0', role: 'Base' },
-        ],
-        paletteRules: [
-          'Deep Navy backgrounds with Mint “signal” elements (timecode, dividers).',
-          'Orange is for highlights/urgency — keep it to one key element per asset.',
-          'Use Fog for readable panels and captions (avoid long text on pure navy).',
-          'Scanline/noise is allowed but must stay subtle.',
-        ],
-        type: {
-          headline: 'Bebas Neue (Cinematic)',
-          body: 'Inter — neutral body copy for clarity',
-          mono: 'JetBrains Mono — timecode + REC labels',
-          hierarchy: [
-            { label: 'H1', value: '70–110 / tall / tight', desc: 'Covers + thumbnails' },
-            { label: 'H2', value: '28–44 / bold', desc: 'Episode titles + hooks' },
-            { label: 'META', value: '12–16 / mono', desc: 'REC, timecode, EP labels' },
-          ],
-          rules: [
-            'Use timecode as a signature: “16:43:12:00” style.',
-            'Headlines can crop into the frame for cinematic scale.',
-            'Keep body text on Fog panels for readability.',
-          ],
+        description: "Night gradients + VHS noise + streetlight glow — kinetic, cinematic, late‑night clarity.",
+        colors: {
+          primary: "#FF2E88",     // neonPink
+          secondary: "#00B3FF",   // laserBlue
+          accent: "#FFB000",      // streetAmber
+          bg: "#070B1C",          // midnightNavy
+          text: "#F7F7FF",        // fogWhite
+          neutral: "#5A5A6A"      // vhsGray
         },
-        system: {
-          motifs: ['VHS timecode overlays', 'CRT scanlines + subtle noise', 'Neon horizon/grid lines', 'Light leaks / lens flare (minimal)', 'REC indicators + frame corners'],
-          layoutRules: ['Frame the content with corner marks or thin borders.', 'Timecode sits bottom-center or top-right consistently.', 'Mint is “signal”; Orange is “spark”. Never compete them equally.', 'Use gradients only as a glow, not as a full background.'],
-          bestFor: ['Serious + optimistic tone', 'Storytelling and sense-making episodes', 'Video-first assets (Reels, YouTube)'],
-          templateRules: ['Always include one of: timecode / REC / corner marks.', 'Keep scanline opacity ≤10%.', 'Titles should be ≤6 words for maximum punch.'],
+        typography: {
+          headline: "Bebas Neue (display)",
+          body: "Inter (400–600)",
+          meta: "Space Mono (400–700)",
+          headlineFamily: "Bebas Neue",
+          bodyFamily: "Inter",
+          metaFamily: "Space Mono"
         },
-        tokens: {
-          colors: { deepNavy: '#070A12', crtMint: '#3CFFB2', sunsetOrange: '#FF6A00', softFog: '#E6E8F0', steel: '#8C92A6' },
-          typography: {
-            headline: { family: 'Bebas Neue', weights: [400] },
-            body: { family: 'Inter', weights: [400, 500, 600] },
-            monospace: { family: 'JetBrains Mono', weights: [400, 700] },
-          },
-          spacing: { unit: 4, scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128] },
-          textures: { scanline: { spacing: '2px', opacity: '0.05–0.10' }, noise: { opacity: '0.04–0.09' }, glow: { opacity: '0.06–0.14' } },
-        },
-        clientNotes: [
-          'Most “cinematic” direction — great for motion/audiograms.',
-          'If the show is highly comedic, balance with brighter Fog panels.',
-          'Works extremely well with photography and subtle color grading.',
-          'Keep overlays subtle so it doesn’t look like a meme edit.',
-        ],
-        accents: {
-          accent: '#3CFFB2',
-          accent2: '#E6E8F0',
-          accent3: '#FF6A00',
-          glitchA: '#3CFFB2',
-          glitchB: '#FF6A00',
-          heroGlow: 'rgba(60,255,178,.07)',
-          coverOverlay: 'linear-gradient(to bottom, rgba(60,255,178,.08), transparent 50%, rgba(255,106,0,.08))',
-        },
+        textures: { scanOpacity: 0.12, grainOpacity: 0.08 }
       },
 
-      nostalgic: {
-        id: 'nostalgic',
-        label: 'Nostalgic Neon 🌴',
+      {
+        id: "nostalgic-neon",
+        name: "NOSTALGIC NEON 🌴",
         recommended: false,
-        heroTitle: 'NOSTALGIC NEON',
-        heroSubtitle: 'Synthwave Miami glow — holographic CD vibes, neon edges, and VHS shimmer without the clichés.',
-        pills: ['Synthwave', 'Miami', 'Holographic', 'VHS shimmer', 'Optimistic'],
-        ideology: '80s vision of the future meets Gen Z reality. Bold neon accents, high contrast, and a controlled “glow” system that stays readable at thumbnail sizes.',
-        colors: [
-          { name: 'Neon Magenta', hex: '#FF006E', role: 'Primary' },
-          { name: 'Electric Cyan', hex: '#00F5FF', role: 'Primary' },
-          { name: 'Sunset Orange', hex: '#FB5607', role: 'Accent' },
-          { name: 'Night Black', hex: '#0B0B10', role: 'Base' },
-        ],
-        paletteRules: [
-          'Black is the default canvas; neons are for edges, bars, and short highlights.',
-          'Pick ONE neon as the lead per asset (Magenta or Cyan).',
-          'Orange is the spark: one element per layout (button/bar/sticker).',
-          'Glow is a treatment, not a background — keep text on solid surfaces.',
-        ],
-        type: {
-          headline: 'Archivo Black (Italic treatment)',
-          body: 'Inter — clean body copy for contrast',
-          mono: 'JetBrains Mono — timecode + labels',
-          hierarchy: [
-            { label: 'H1', value: '72–110 / italic feel / tight', desc: 'Covers + thumbnails' },
-            { label: 'H2', value: '28–44 / bold', desc: 'Episode titles + hooks' },
-            { label: 'META', value: '12–16 / mono', desc: 'EP, timecode, pillar tags' },
-          ],
-          rules: [
-            'Add neon glow to headlines only (never to long copy).',
-            'Use italic/oblique styling for headline energy; keep body upright.',
-            'Keep titles ≤6 words for maximum punch.',
-          ],
+        description: "Synthwave + Miami holographics + VHS glitch — 80s future fantasy meets Gen‑Z reality.",
+        colors: {
+          primary: "#FF006E",     // Neon Magenta
+          secondary: "#00F5FF",   // Electric Cyan
+          accent: "#FB5607",      // Sunset Orange
+          bg: "#0B0B14",
+          text: "#F8F8FF",
+          neutral: "#4B4B5A"
         },
-        system: {
-          motifs: ['Holographic circle / CD ring', 'Neon edge strokes', 'VHS scanlines (subtle)', 'Light leak corner (minimal)', 'Timecode + REC labels'],
-          layoutRules: ['Use a strong frame or edge glow, not full-bleed gradients.', 'Headline sits on clean space; glow sits behind/around it.', 'Use one neon bar as an anchor (top or bottom).', 'Keep overlays <10% opacity.'],
-          bestFor: ['Gen Z-first positioning', 'Music/culture adjacency', 'YouTube + Reels motion frames'],
-          templateRules: ['Lead neon + one spark (orange).', 'Use timecode as signature.', 'Avoid adding more than 2 glow layers.'],
+        typography: {
+          headline: "Archivo Black (skewed for italic vibe)",
+          body: "DM Sans (400–700)",
+          meta: "IBM Plex Mono (400–600)",
+          headlineFamily: "Archivo Black",
+          bodyFamily: "DM Sans",
+          metaFamily: "IBM Plex Mono",
+          headlineSkew: true
         },
-        tokens: {
-          colors: { neonMagenta: '#FF006E', electricCyan: '#00F5FF', sunsetOrange: '#FB5607', nightBlack: '#0B0B10', fog: '#E6E8F0' },
-          typography: {
-            headline: { family: 'Archivo Black', weights: [400] },
-            body: { family: 'Inter', weights: [400, 500, 600] },
-            monospace: { family: 'JetBrains Mono', weights: [400, 700] },
-          },
-          spacing: { unit: 4, scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128] },
-          textures: { scanline: { opacity: '0.04–0.10' }, glow: { opacity: '0.08–0.18' } },
-        },
-        clientNotes: [
-          'Feels “retro-future” instantly — great for first impression.',
-          'Make sure titles stay short so glow doesn’t muddy the type.',
-          'Works best with high-contrast shapes, not busy photos.',
-          'If you want more serious tone, reduce magenta usage.',
-        ],
-        accents: {
-          accent: '#00F5FF',
-          accent2: '#FF006E',
-          accent3: '#FB5607',
-          glitchA: '#00F5FF',
-          glitchB: '#FF006E',
-          heroGlow: 'rgba(0,245,255,.08)',
-          coverOverlay: 'linear-gradient(to bottom, rgba(0,245,255,.08), transparent 45%, rgba(255,0,110,.08))',
-        },
+        textures: { scanOpacity: 0.10, grainOpacity: 0.06 }
       },
 
-      pop: {
-        id: 'pop',
-        label: 'Pop Collision 😊',
+      {
+        id: "pop-collision",
+        name: "POP COLLISION 😊",
         recommended: false,
-        heroTitle: 'POP COLLISION',
-        heroSubtitle: 'Smiley culture + bold playful graphics — serious ideas packaged friendly but sharp.',
-        pills: ['Smiley sheets', 'Emoji culture', 'Cassette energy', 'Bold blocks', 'Friendly sharp'],
-        ideology: 'Serious ideas in accessible packaging—friendly but sharp. Big chunky type, pop colors, sticker-sheet motifs, and playful but disciplined composition.',
-        colors: [
-          { name: 'Pop Yellow', hex: '#FFED00', role: 'Primary' },
-          { name: 'Magenta Punch', hex: '#FF0080', role: 'Primary' },
-          { name: 'Hyper Cyan', hex: '#00D9FF', role: 'Accent' },
-          { name: 'Deep Black', hex: '#0A0A0A', role: 'Base' },
-        ],
-        paletteRules: [
-          'Yellow is the dominant surface (big blocks).',
-          'Magenta is the punch (one big shape or headline).',
-          'Cyan is the highlight (small badges/underlines only).',
-          'Use black for type — keep it ultra-legible.',
-        ],
-        type: {
-          headline: 'Dela Gothic One',
-          body: 'Inter — clean support copy',
-          mono: 'Space Mono — tags and meta',
-          hierarchy: [
-            { label: 'H1', value: '72–120 / chunky / tight', desc: 'Posters + cover hooks' },
-            { label: 'H2', value: '28–44 / bold', desc: 'Episode titles' },
-            { label: 'META', value: '12–16 / mono', desc: 'EP, pillar tags, credits' },
-          ],
-          rules: [
-            'Use handwritten accents only as SMALL callouts (1–3 words).',
-            'Chunky headlines should be short (≤5 words).',
-            'Avoid gradients; use hard color blocks for pop clarity.',
-          ],
+        description: "Smiley/emoji culture + cassette pop graphics — friendly packaging for sharp ideas.",
+        colors: {
+          primary: "#FFED00",     // Pop Yellow
+          secondary: "#FF0080",   // Magenta Punch
+          accent: "#00D9FF",      // Hyper Cyan
+          bg: "#0A0A0A",
+          text: "#F8F8F8",
+          neutral: "#666666"
         },
-        system: {
-          motifs: ['Smiley sticker circles', 'Cassette tape silhouettes', 'Sticker sheet grids', 'Bold blocks + hard dividers', 'Handwritten callouts (small)'],
-          layoutRules: ['Use a 2×2 or 3×1 block layout for rhythm.', 'Make one block the “hero” (headline or smiley grid).', 'Keep callouts consistent: same angle/size.', 'Never clutter: 3 motif types max per asset.'],
-          bestFor: ['IG carousels + quotes', 'Explainers that need warmth', 'Merch-ready stickers'],
-          templateRules: ['Yellow surface + black type as default.', 'Magenta used once as anchor.', 'Cyan only for highlights (lines, dots, tiny chips).'],
+        typography: {
+          headline: "Dela Gothic One (chunky)",
+          body: "Inter (400–600)",
+          meta: "Space Mono (400–700)",
+          headlineFamily: "Dela Gothic One",
+          bodyFamily: "Inter",
+          metaFamily: "Space Mono",
+          accentFamily: "Permanent Marker"
         },
-        tokens: {
-          colors: { popYellow: '#FFED00', magentaPunch: '#FF0080', hyperCyan: '#00D9FF', deepBlack: '#0A0A0A', offWhite: '#F6F1E6' },
-          typography: {
-            headline: { family: 'Dela Gothic One', weights: [400] },
-            body: { family: 'Inter', weights: [400, 500, 600] },
-            monospace: { family: 'Space Mono', weights: [400, 700] },
-            accent: { family: 'Permanent Marker', weights: [400] },
-          },
-          spacing: { unit: 4, scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128] },
-          textures: { grain: { opacity: '0.02–0.06' } },
-        },
-        clientNotes: [
-          'Most playful direction — still readable and sharp when grid is disciplined.',
-          'Great for “hard topics, soft landing”.',
-          'Avoid making everything an emoji: keep motifs minimal and repeatable.',
-          'Best if you commit to very short hook lines.',
-        ],
-        accents: {
-          accent: '#FFED00',
-          accent2: '#FF0080',
-          accent3: '#00D9FF',
-          glitchA: '#00D9FF',
-          glitchB: '#FF0080',
-          heroGlow: 'rgba(255,237,0,.07)',
-          coverOverlay: 'linear-gradient(to bottom, rgba(255,0,128,.10), transparent 50%, rgba(0,217,255,.08))',
-        },
+        textures: { scanOpacity: 0.07, grainOpacity: 0.05 }
       },
 
-      street: {
-        id: 'street',
-        label: 'Street Culture 🛹',
+      {
+        id: "street-culture",
+        name: "STREET CULTURE 🛹",
         recommended: false,
-        heroTitle: 'STREET CULTURE',
-        heroSubtitle: 'Graffiti energy + youth movements — raw authenticity over marketing, built for cultural momentum.',
-        pills: ['Skate culture', 'Graffiti', 'Youth movements', 'Raw', 'Authentic'],
-        ideology: 'Raw authenticity, cultural movements over marketing. Street textures, bold type, and tag-like callouts. Feels like zine + graffiti + documentary honesty.',
-        colors: [
-          { name: 'Matrix Green', hex: '#00FF41', role: 'Primary' },
-          { name: 'Rebel Red', hex: '#FF2E63', role: 'Accent' },
-          { name: 'Tag Yellow', hex: '#FFFB00', role: 'Accent' },
-          { name: 'Asphalt Black', hex: '#090A0B', role: 'Base' },
-        ],
-        paletteRules: [
-          'Black + Green is the base (street night + neon signage).',
-          'Red is only for pressure/urgency; Yellow for tag highlights.',
-          'Keep textures behind shapes, not behind paragraphs.',
-          'Use thick strokes and hard alignment — no soft gradients.',
-        ],
-        type: {
-          headline: 'Bebas Neue',
-          body: 'Inter — clean for readability',
-          mono: 'IBM Plex Mono — meta tags + IDs',
-          hierarchy: [
-            { label: 'H1', value: '76–120 / tall / tight', desc: 'Posters + cover hooks' },
-            { label: 'H2', value: '28–44 / bold', desc: 'Episode titles' },
-            { label: 'META', value: '12–16 / mono', desc: 'EP, pillar tags, credits' },
-          ],
-          rules: [
-            'Use marker-style accents sparingly (1–2 words).',
-            'Large headlines can crop into frame for energy.',
-            'Keep body copy on solid panels (Fog/cream optional).',
-          ],
+        description: "Graffiti energy + youth movement visuals — raw authenticity over polish.",
+        colors: {
+          primary: "#00FF41",     // Matrix Green
+          secondary: "#FF2E63",   // Rebel Red
+          accent: "#FFFB00",      // Tag Yellow
+          bg: "#0A0A0A",
+          text: "#F8F8F8",
+          neutral: "#666666"
         },
-        system: {
-          motifs: ['Graffiti strokes (vector)', 'Sticker labels + tape', 'Tag scribbles', 'Hard grid lines', 'Photo cutouts (optional)'],
-          layoutRules: ['One hero headline + one tag callout.', 'Use green for structure lines and selection highlights.', 'Keep one “tag” area consistent (bottom-left or top-right).', 'Textures low opacity; grit without losing legibility.'],
-          bestFor: ['Culture + youth movements', 'Strong opinion segments', 'Community-building campaigns'],
-          templateRules: ['Keep green as the signature.', 'Use red once per asset max.', 'Use yellow only for tag highlights or marker strokes.'],
+        typography: {
+          headline: "Bebas Neue (display)",
+          body: "DM Sans (400–700)",
+          meta: "IBM Plex Mono (400–600)",
+          headlineFamily: "Bebas Neue",
+          bodyFamily: "DM Sans",
+          metaFamily: "IBM Plex Mono",
+          accentFamily: "Permanent Marker"
         },
-        tokens: {
-          colors: { matrixGreen: '#00FF41', rebelRed: '#FF2E63', tagYellow: '#FFFB00', asphaltBlack: '#090A0B', paper: '#F6F1E6' },
-          typography: {
-            headline: { family: 'Bebas Neue', weights: [400] },
-            body: { family: 'Inter', weights: [400, 500, 600] },
-            monospace: { family: 'IBM Plex Mono', weights: [400, 700] },
-            accent: { family: 'Permanent Marker', weights: [400] },
-          },
-          spacing: { unit: 4, scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128] },
-          textures: { grain: { opacity: '0.04–0.10' }, xerox: { opacity: '0.06–0.14' } },
-        },
-        clientNotes: [
-          'Most raw / movement-driven direction — feels like culture, not marketing.',
-          'Needs consistent templates so it doesn’t get messy.',
-          'Best when you lean into photography or documentary frames.',
-          'If you want more “premium”, reduce texture and increase negative space.',
-        ],
-        accents: {
-          accent: '#00FF41',
-          accent2: '#FFFB00',
-          accent3: '#FF2E63',
-          glitchA: '#00FF41',
-          glitchB: '#FF2E63',
-          heroGlow: 'rgba(0,255,65,.06)',
-          coverOverlay: 'linear-gradient(to bottom, rgba(0,255,65,.07), transparent 45%, rgba(255,46,99,.07))',
-        },
-      },
-    };
+        textures: { scanOpacity: 0.09, grainOpacity: 0.07 }
+      }
+    ];
 
-    // Curated order (recommended first)
-    const DIRECTION_ORDER = ['signal', 'interface', 'timeline', 'vhs', 'nostalgic', 'pop', 'street'];
-
-    const $ = (id) => document.getElementById(id);
-
-    const els = {
-      select: $('directionSelect'),
-      heroTitle: $('heroTitle'),
-      heroSubtitle: $('heroSubtitle'),
-      heroPills: $('heroPills'),
-      heroGlow: $('heroGlow'),
-      directionBadge: $('directionBadge'),
-      dirName: $('dirName'),
-      dirIdeology: $('dirIdeology'),
-      overviewCards: $('overviewCards'),
-      paletteGrid: $('paletteGrid'),
-      paletteRules: $('paletteRules'),
-      typeHeadlineSample: $('typeHeadlineSample'),
-      typeBodySample: $('typeBodySample'),
-      typeMonoSample: $('typeMonoSample'),
-      typeHierarchy: $('typeHierarchy'),
-      typeRules: $('typeRules'),
-      motifs: $('motifs'),
-      layoutRules: $('layoutRules'),
-      bestFor: $('bestFor'),
-      templateRules: $('templateRules'),
-      tokensPre: $('tokensPre'),
-      clientNotes: $('clientNotes'),
-      coverOverlay: $('coverOverlay'),
-      coverBar: $('coverBar'),
-      copyTokens: $('copyTokens'),
-    };
-
-    // Safe event binding to prevent “Cannot read properties of null (reading 'addEventListener')”
-    function on(el, event, handler, opts) {
-      if (!el) return;
-      el.addEventListener(event, handler, opts);
+    // ===== Rendering =====
+    function isLightBg(hex){
+      // Simple luminance heuristic
+      const c = hex.replace('#','');
+      const r = parseInt(c.slice(0,2),16);
+      const g = parseInt(c.slice(2,4),16);
+      const b = parseInt(c.slice(4,6),16);
+      const lum = (0.2126*r + 0.7152*g + 0.0722*b)/255;
+      return lum > 0.72;
     }
 
-    function renderDirectionSelectOptions() {
-      if (!els.select) return;
-      els.select.innerHTML = '';
-
-      const keys = DIRECTION_ORDER.filter((k) => !!DIRECTIONS[k]);
-      keys.forEach((k) => {
-        const d = DIRECTIONS[k];
-        const opt = document.createElement('option');
-        opt.value = d.id;
-        opt.textContent = `${d.label}${d.recommended ? ' (Recommended)' : ''}`;
-        els.select.appendChild(opt);
-      });
+    function safeText(t){
+      return String(t).replace(/[<>&]/g, s => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[s]));
     }
 
-    function setCSSVars(direction) {
-      // Theme for background textures + micro-animations
-      if (document.body) document.body.dataset.theme = direction.id;
-      document.documentElement.style.setProperty('--accent', direction.accents.accent);
-      document.documentElement.style.setProperty('--accent2', direction.accents.accent2);
-      document.documentElement.style.setProperty('--accent3', direction.accents.accent3);
-      document.documentElement.style.setProperty('--glitchA', direction.accents.glitchA);
-      document.documentElement.style.setProperty('--glitchB', direction.accents.glitchB);
+    function buildSlide(theme){
+      const { id, name, description, colors, typography, textures } = theme;
+      const light = isLightBg(colors.bg);
 
-      if (els.heroGlow) {
-        els.heroGlow.style.background = `linear-gradient(to bottom, transparent, ${direction.accents.heroGlow}, transparent)`;
-      }
-      if (els.coverOverlay) {
-        els.coverOverlay.style.background = direction.accents.coverOverlay;
-      }
-      if (els.coverBar) {
-        els.coverBar.style.background = direction.accents.accent3;
-      }
-
-      // Dynamic font families (headline/body/mono)
-      const head = direction?.tokens?.typography?.headline?.family || 'Space Grotesk';
-      const body = direction?.tokens?.typography?.body?.family || 'Inter';
-      const mono = direction?.tokens?.typography?.monospace?.family || 'JetBrains Mono';
-
-      // Use monospace if headline is mono-based (Archive Terminal / etc)
-      document.documentElement.style.setProperty('--fontHead', `'${head}', sans-serif`);
-      document.documentElement.style.setProperty('--fontBody', `'${body}', sans-serif`);
-      document.documentElement.style.setProperty('--fontMono', `'${mono}', monospace`);
-
-      // Add optional neon glow class to hero title for Nostalgic Neon
-      if (els.heroTitle) {
-        const isNeon = direction.id === 'nostalgic';
-        els.heroTitle.classList.toggle('neon-glow', isNeon);
-        // Add a slight oblique feel for the Archivo Black “italic treatment”
-        els.heroTitle.style.fontStyle = isNeon ? 'italic' : 'normal';
-      }
-    }
-
-    function renderPills(list) {
-      if (!els.heroPills) return;
-      els.heroPills.innerHTML = '';
-      list.forEach((t) => {
-        const span = document.createElement('span');
-        span.className = 'pill';
-        span.textContent = t;
-        els.heroPills.appendChild(span);
-      });
-    }
-
-    function renderOverviewCards(direction) {
-      if (!els.overviewCards) return;
-      const cards = [
-        { title: 'Ideology', body: direction.ideology },
-        { title: 'Tradeoff', body: direction.clientNotes?.[1] || '—' },
-        { title: 'Deliverables', body: 'Cover • Episode system • Social templates • Tokens • Brand rules' },
+      const swatchOrder = [
+        { label: 'primary', value: colors.primary },
+        { label: 'secondary', value: colors.secondary },
+        { label: 'accent', value: colors.accent },
+        { label: 'bg', value: colors.bg },
+        { label: 'text', value: colors.text },
+        { label: 'neutral', value: colors.neutral }
       ];
-      els.overviewCards.innerHTML = '';
-      cards.forEach((c) => {
-        const div = document.createElement('div');
-        div.className = 'card p-7';
-        div.innerHTML = `
-          <div class="font-mono text-xs mb-3" style="color: var(--accent);">${c.title.toUpperCase()}</div>
-          <p style="color: var(--muted);">${c.body}</p>
-        `;
-        els.overviewCards.appendChild(div);
-      });
-    }
 
-    function renderPalette(direction) {
-      if (!els.paletteGrid || !els.paletteRules) return;
+      const titleFamily = typography.headlineFamily || 'Inter';
+      const bodyFamily = typography.bodyFamily || 'Inter';
+      const metaFamily = typography.metaFamily || 'JetBrains Mono';
+      const skew = typography.headlineSkew ? 'transform: skewX(-10deg); display:inline-block;' : '';
 
-      els.paletteGrid.innerHTML = '';
-      direction.colors.forEach((c) => {
-        const sw = document.createElement('div');
-        sw.className = 'color-swatch card p-5 flex flex-col justify-between h-32';
-        sw.innerHTML = `
-          <div class="flex items-start justify-between">
-            <div>
-              <div class="font-mono text-[11px]" style="color: rgba(255,255,255,.70)">${c.role.toUpperCase()}</div>
-              <div class="font-headline font-bold text-lg">${c.name}</div>
+      const slide = document.createElement('section');
+      slide.className = `slide ${light ? 'isLight' : ''}`;
+      slide.id = id;
+      slide.style.background = `radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,${light ? 0.22 : 0.07}), transparent 55%), radial-gradient(900px 520px at 90% 40%, rgba(255,255,255,${light ? 0.16 : 0.06}), transparent 60%), ${colors.bg}`;
+      slide.style.color = colors.text;
+      slide.style.setProperty('--scanOpacity', String(textures?.scanOpacity ?? 0.08));
+      slide.style.setProperty('--grainOpacity', String(textures?.grainOpacity ?? 0.06));
+      slide.style.setProperty('--accentText', colors.accent);
+
+      slide.innerHTML = `
+        <div class="slideInner">
+          <div>
+            <div class="eyebrow">BTW GEN • BRAND DIRECTION</div>
+            <h1 class="title" style="font-family:${safeText(titleFamily)}, Inter, system-ui; ${skew}">${safeText(name)}</h1>
+            <p class="desc" style="font-family:${safeText(bodyFamily)}, Inter, system-ui; color:${light ? 'rgba(0,0,0,0.78)' : 'rgba(255,255,255,0.80)'}">${safeText(description)}</p>
+            <div class="rule" style="background:${safeText(colors.accent)}"></div>
+
+            <div class="typoLabel">TYPOGRAPHY</div>
+            <div class="typoCard">
+              <div class="typoRow">
+                <div class="typoKey">HEADLINE</div>
+                <div class="typoVal" style="font-family:${safeText(titleFamily)}, Inter, system-ui;">${safeText(typography.headline)}</div>
+              </div>
+              <div class="typoRow">
+                <div class="typoKey">BODY</div>
+                <div class="typoVal" style="font-family:${safeText(bodyFamily)}, Inter, system-ui;">${safeText(typography.body)}</div>
+              </div>
+              <div class="typoRow">
+                <div class="typoKey">META</div>
+                <div class="typoVal" style="font-family:${safeText(metaFamily)}, JetBrains Mono, ui-monospace;">${safeText(typography.meta)}</div>
+              </div>
             </div>
-            <div class="w-10 h-10 rounded-lg border" style="background:${c.hex}; border-color: rgba(255,255,255,.14)"></div>
           </div>
-          <div class="font-mono text-xs" style="color: rgba(255,255,255,.80)">${c.hex}</div>
-        `;
-        els.paletteGrid.appendChild(sw);
-      });
 
-      els.paletteRules.innerHTML = '';
-      direction.paletteRules.forEach((r) => {
-        const li = document.createElement('li');
-        li.className = 'flex gap-2';
-        li.innerHTML = `<span style="color: var(--accent);">▸</span><span>${r}</span>`;
-        els.paletteRules.appendChild(li);
-      });
-    }
+          <div>
+            <div class="paletteTitle">PALETTE</div>
+            <div class="swatches" aria-label="Color palette">
+              ${swatchOrder.map(s => `
+                <div class="swatch" style="background:${safeText(s.value)}">
+                  <div class="swatchCode">${safeText(s.value.toUpperCase())}</div>
+                </div>
+              `).join('')}
+            </div>
 
-    function renderType(direction) {
-      if (!els.typeHeadlineSample || !els.typeBodySample || !els.typeMonoSample || !els.typeHierarchy || !els.typeRules) return;
-
-      els.typeHeadlineSample.textContent = direction.type.headline;
-      els.typeBodySample.textContent = direction.type.body;
-      els.typeMonoSample.textContent = direction.type.mono.includes('—') ? direction.type.mono.split('—')[0].trim() : direction.type.mono;
-
-      els.typeHierarchy.innerHTML = '';
-      direction.type.hierarchy.forEach((h) => {
-        const row = document.createElement('div');
-        row.className = 'flex items-start justify-between gap-4 p-4 rounded-xl';
-        row.style.background = 'rgba(255,255,255,.04)';
-        row.style.border = '1px solid rgba(255,255,255,.08)';
-        row.innerHTML = `
-          <div class="font-mono text-xs" style="color: var(--accent);">${h.label}</div>
-          <div class="flex-1">
-            <div class="font-headline font-bold">${h.value}</div>
-            <div class="text-sm" style="color: var(--muted2);">${h.desc}</div>
+            <div class="wordmarkWrap" aria-label="Wordmark preview">
+              <div class="wordmark" style="font-family:${safeText(titleFamily)}, Inter, system-ui;">
+                <span class="wmA" style="--primary:${safeText(colors.primary)}; color:${safeText(colors.primary)}">BTW/</span><span class="wmB" style="--secondary:${safeText(colors.secondary)}; color:${safeText(colors.secondary)}">GEN</span>
+              </div>
+              <div class="wordmarkMeta">BTW/GEN uses Primary + Secondary</div>
+            </div>
           </div>
-        `;
-        els.typeHierarchy.appendChild(row);
-      });
+        </div>
+      `;
 
-      els.typeRules.innerHTML = '';
-      direction.type.rules.forEach((r) => {
-        const li = document.createElement('li');
-        li.className = 'flex gap-2';
-        li.innerHTML = `<span style="color: var(--accent);">▸</span><span>${r}</span>`;
-        els.typeRules.appendChild(li);
-      });
+      return slide;
     }
 
-    function renderSystem(direction) {
-      const mapList = (node, items) => {
-        if (!node) return;
-        node.innerHTML = '';
-        items.forEach((t) => {
-          const li = document.createElement('li');
-          li.className = 'flex gap-2';
-          li.innerHTML = `<span style="color: var(--accent);">▸</span><span>${t}</span>`;
-          node.appendChild(li);
-        });
-      };
+    function buildOptions(themes){
+      const select = document.getElementById('themeSelect');
+      if (!select) return;
 
-      mapList(els.motifs, direction.system.motifs);
-      mapList(els.layoutRules, direction.system.layoutRules);
-      mapList(els.bestFor, direction.system.bestFor);
-      mapList(els.templateRules, direction.system.templateRules);
+      select.innerHTML = themes.map(t => {
+        const label = t.recommended ? `${t.name} (Recommended)` : t.name;
+        return `<option value="#${t.id}">${safeText(label)}</option>`;
+      }).join('');
 
-      // Tokens
-      if (els.tokensPre) els.tokensPre.textContent = JSON.stringify(direction.tokens, null, 2);
+      // Default selection
+      const rec = themes.find(t => t.recommended) || themes[0];
+      select.value = `#${rec.id}`;
 
-      // Client notes
-      if (els.clientNotes) {
-        els.clientNotes.innerHTML = '';
-        (direction.clientNotes || []).forEach((n) => {
-          const li = document.createElement('li');
-          li.className = 'flex gap-2';
-          li.innerHTML = `<span style="color: var(--accent);">▸</span><span>${n}</span>`;
-          els.clientNotes.appendChild(li);
-        });
-      }
-    }
-
-    function setText(direction) {
-      if (els.directionBadge) {
-        els.directionBadge.textContent = `DIRECTION: ${direction.label.toUpperCase()}${direction.recommended ? ' • RECOMMENDED' : ''}`;
-      }
-      if (els.heroTitle) els.heroTitle.textContent = direction.heroTitle;
-      if (els.heroSubtitle) els.heroSubtitle.textContent = direction.heroSubtitle;
-      if (els.dirName) els.dirName.textContent = direction.label;
-      if (els.dirIdeology) els.dirIdeology.textContent = direction.ideology;
-
-      renderPills(direction.pills);
-      renderOverviewCards(direction);
-      renderPalette(direction);
-      renderType(direction);
-      renderSystem(direction);
-    }
-
-    function applyDirection(keyOrId, { pushState = true } = {}) {
-      // Accept either our internal key (signal/interface/...) OR the id value from the <select>
-      const foundKey = Object.keys(DIRECTIONS).find((k) => DIRECTIONS[k].id === keyOrId) || keyOrId;
-      const direction = DIRECTIONS[foundKey] || DIRECTIONS.signal;
-
-      // Transition
-      const targets = ['overview', 'palette', 'type', 'system', 'tokens']
-        .map((id) => document.getElementById(id))
-        .filter(Boolean);
-
-      targets.forEach((t) => t.classList.add('fade-enter'));
-
-      setCSSVars(direction);
-      setText(direction);
-
-      requestAnimationFrame(() => {
-        targets.forEach((t) => {
-          t.classList.add('fade-enter-active');
-          setTimeout(() => {
-            t.classList.remove('fade-enter');
-            t.classList.remove('fade-enter-active');
-          }, 260);
-        });
-      });
-
-      // Update URL param for shareability
-      if (pushState) {
-        const url = new URL(window.location.href);
-        url.searchParams.set('direction', direction.id);
-        window.history.replaceState({}, '', url);
-      }
-    }
-
-    // Smooth scroll for anchors
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-      on(a, 'click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    // Update nav dots on scroll
-    const sections = ['overview', 'palette', 'type', 'system', 'tokens'].map((id) => document.getElementById(id));
-    const navDots = document.querySelectorAll('.nav-dot');
-
-    on(window, 'scroll', () => {
-      let current = 'overview';
-      sections.forEach((section) => {
-        if (!section) return;
-        const top = section.offsetTop;
-        if (window.pageYOffset >= top - 220) current = section.id;
-      });
-
-      navDots.forEach((dot) => {
-        dot.classList.remove('active');
-        if (dot.getAttribute('href') === `#${current}`) dot.classList.add('active');
-      });
-    });
-
-    // Copy tokens
-    async function copyText(text, fallbackMsg) {
-      try {
-        await navigator.clipboard.writeText(text);
-        return true;
-      } catch {
-        alert(fallbackMsg);
-        return false;
-      }
-    }
-
-    // ✅ Tiny test harness (non-blocking). Open DevTools Console to see results.
-    function runTests() {
-      const results = [];
-      const assert = (name, cond) => results.push({ name, pass: !!cond });
-
-      assert('directionSelect exists', !!document.getElementById('directionSelect'));
-      assert('copyTokens exists', !!document.getElementById('copyTokens'));
-      assert('bg layers exist', !!document.getElementById('bgGlow') && !!document.getElementById('bgTexture') && !!document.getElementById('bgNoise') && !!document.getElementById('bgVignette'));
-
-      assert('DIRECTIONS has exactly 7 options', Object.keys(DIRECTIONS).length === 7);
-      assert('signal direction exists', !!DIRECTIONS.signal);
-
-      const select = document.getElementById('directionSelect');
-      const expectedCount = DIRECTION_ORDER.filter((k) => !!DIRECTIONS[k]).length;
-      assert('select options match DIRECTION_ORDER length', !!select && select.options.length === expectedCount);
-
-      // applyDirection should not throw for each option
-      Object.keys(DIRECTIONS).forEach((k) => {
-        try {
-          applyDirection(k, { pushState: false });
-          assert(`applyDirection("${k}") does not throw`, true);
-        } catch (e) {
-          console.error(e);
-          assert(`applyDirection("${k}") does not throw`, false);
+      // Jump on change
+      select.addEventListener('change', (e) => {
+        const hash = e.target.value;
+        const el = document.querySelector(hash);
+        if (el) {
+          history.replaceState(null, '', hash);
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
-
-      // Theme dataset should be set after applying a direction
-      try {
-        applyDirection('signal', { pushState: false });
-        assert('body data-theme set to signal after applyDirection', document.body?.dataset?.theme === 'signal');
-      } catch {
-        assert('body data-theme set to signal after applyDirection', false);
-      }
-
-      // UI buttons removed: ensure no dangling IDs
-      assert('approveBtn removed', !document.getElementById('approveBtn'));
-      assert('downloadBtn removed', !document.getElementById('downloadBtn'));
-      assert('copyShareLink removed', !document.getElementById('copyShareLink'));
-
-      const passed = results.filter((r) => r.pass).length;
-      const failed = results.filter((r) => !r.pass);
-      console.groupCollapsed(`Brand Pitch Tests: ${passed}/${results.length} passed`);
-      results.forEach((r) => console[r.pass ? 'log' : 'error'](`${r.pass ? '✓' : '✗'} ${r.name}`));
-      console.groupEnd();
-      if (failed.length) console.warn('Some tests failed — check missing IDs or JS errors above.');
     }
 
-    // Init + wire events safely
-    (function init() {
-      renderDirectionSelectOptions();
+    function runSmokeTests(){
+      const outEl = document.getElementById('testOutput');
+      const lines = [];
+      function t(name, fn){
+        try{ fn(); lines.push(`✓ ${name}`); }
+        catch(err){ lines.push(`✗ ${name} — ${err.message || err}`); }
+      }
 
-      // Init from URL param
-      const url = new URL(window.location.href);
-      const directionId = url.searchParams.get('direction') || 'signal';
-      const resolvedKey = Object.keys(DIRECTIONS).find((k) => DIRECTIONS[k].id === directionId) || 'signal';
-
-      if (els.select) els.select.value = DIRECTIONS[resolvedKey].id;
-      applyDirection(resolvedKey, { pushState: false });
-
-      // Select change
-      on(els.select, 'change', () => applyDirection(els.select.value));
-
-      // Copy tokens
-      on(els.copyTokens, 'click', async () => {
-        const ok = await copyText(
-          els.tokensPre ? els.tokensPre.textContent : '',
-          'Clipboard blocked — select tokens text and copy manually.'
-        );
-        if (!ok) return;
-        els.copyTokens.textContent = 'Copied ✓';
-        setTimeout(() => (els.copyTokens.textContent = 'Copy tokens'), 1200);
+      t('THEMES has 7 items', () => {
+        if (THEMES.length !== 7) throw new Error(`expected 7, got ${THEMES.length}`);
       });
 
-      // Cmd/Ctrl+K quick jump
-      on(window, 'keydown', (e) => {
-        const isMac = (navigator.platform || '').toLowerCase().includes('mac');
-        const mod = isMac ? e.metaKey : e.ctrlKey;
-        if (mod && e.key.toLowerCase() === 'k') {
-          e.preventDefault();
-          const sel = document.getElementById('directionSelect');
-          if (sel) sel.focus();
-        }
+      t('Each theme has required fields', () => {
+        const required = ['id','name','description','colors','typography'];
+        THEMES.forEach((th, i) => {
+          required.forEach(k => { if (!(k in th)) throw new Error(`theme[${i}] missing ${k}`); });
+          ['primary','secondary','accent','bg','text','neutral'].forEach(k => {
+            if (!th.colors?.[k]) throw new Error(`${th.id} missing colors.${k}`);
+          });
+          ['headline','body','meta','headlineFamily','bodyFamily','metaFamily'].forEach(k => {
+            if (!th.typography?.[k]) throw new Error(`${th.id} missing typography.${k}`);
+          });
+        });
       });
 
-      runTests();
-    })();
+      t('DOM has deck + select', () => {
+        if (!document.getElementById('deck')) throw new Error('missing #deck');
+        if (!document.getElementById('themeSelect')) throw new Error('missing #themeSelect');
+      });
+
+      // Keep hidden by default; toggle by appending ?debug=1
+      const debug = new URLSearchParams(location.search).get('debug') === '1';
+      if (debug && outEl){
+        outEl.style.display = 'block';
+        outEl.textContent = lines.join('\n');
+      }
+
+      // Always log failures in console
+      lines.filter(l => l.startsWith('✗')).forEach(l => console.error(l));
+    }
+
+    function wire(){
+      const deck = document.getElementById('deck');
+      if (!deck) return;
+
+      deck.innerHTML = '';
+      THEMES.forEach((theme, idx) => {
+        const slide = buildSlide(theme);
+        deck.appendChild(slide);
+        // stagger entrance
+        setTimeout(() => slide.classList.add('ready'), 90 + idx * 60);
+      });
+
+      buildOptions(THEMES);
+
+      // If a hash is present, jump to it (after render)
+      if (location.hash){
+        const el = document.querySelector(location.hash);
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+
+      runSmokeTests();
+    }
+
+    document.addEventListener('DOMContentLoaded', wire);
   </script>
 </body>
 </html>
