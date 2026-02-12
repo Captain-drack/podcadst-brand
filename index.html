@@ -1,674 +1,867 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BTW GEN — Brand Direction Slides (7 Themes)</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BTW GEN — Brand Direction Slides (7 Themes)</title>
 
-  <!-- Google Fonts (theme-specific). Keeping in one request for reliability. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Archivo+Black&family=Work+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&family=Courier+Prime:wght@400;700&family=Dela+Gothic+One&family=Permanent+Marker&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- Google Fonts (theme-specific). Keeping in one request for reliability. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Archivo+Black&family=Work+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&family=Courier+Prime:wght@400;700&family=Dela+Gothic+One&family=Permanent+Marker&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    :root{
-      --pageBg:#070707;
-      --pageText:#EDEDED;
-      --muted:#A9A9A9;
-      --panel:rgba(255,255,255,0.04);
-      --panelBorder:rgba(255,255,255,0.10);
-      --radius:28px;
-      --radiusSm:18px;
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
-      --max: 1180px;
-    }
-
-    *{ box-sizing:border-box; }
-
-    html, body{ height:100%; }
-
-    body{
-      margin:0;
-      background: radial-gradient(1200px 600px at 15% 0%, rgba(255,255,255,0.06), transparent 60%),
-                  radial-gradient(900px 500px at 90% 20%, rgba(255,255,255,0.04), transparent 60%),
-                  var(--pageBg);
-      color:var(--pageText);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      -webkit-font-smoothing:antialiased;
-      text-rendering: geometricPrecision;
-    }
-
-    /* ====== Topbar ====== */
-    .topbar{
-      position: sticky;
-      top:0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(7,7,7,0.88), rgba(7,7,7,0.68));
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .topbarInner{
-      max-width: var(--max);
-      margin:0 auto;
-      padding: 14px 18px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .brandChip{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width: 180px;
-    }
-
-    .chipLogo{
-      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-weight:700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-size: 14px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-      white-space: nowrap;
-    }
-
-    .chipHint{
-      color: var(--muted);
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .selectWrap{
-      margin-left:auto;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      width: min(520px, 100%);
-    }
-
-    label{
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    select{
-      width:100%;
-      height: 44px;
-      font-size: 16px;
-      color: var(--pageText);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 999px;
-      padding: 0 44px 0 16px;
-      outline: none;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    .selectWrap{ position:relative; }
-    .selectWrap::after{
-      content:"▾";
-      position:absolute;
-      right: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(255,255,255,0.70);
-      pointer-events:none;
-      font-size: 16px;
-    }
-
-    /* ====== Deck ====== */
-    .deck{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 18px;
-      display:flex;
-      flex-direction:column;
-      gap: 26px;
-    }
-
-    .slide{
-      position: relative;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: var(--shadow);
-      background: #0A0A0A;
-      isolation: isolate;
-      scroll-margin-top: 92px;
-    }
-
-    /* Non-destructive textures (scanlines + grain) */
-    .slide::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      opacity: var(--scanOpacity, 0.08);
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.05),
-        rgba(255,255,255,0.05) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-      mix-blend-mode: overlay;
-      z-index: 3;
-    }
-
-    .slide::after{
-      content:"";
-      position:absolute;
-      inset:-40px;
-      pointer-events:none;
-      opacity: var(--grainOpacity, 0.06);
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.22) 0.5px, transparent 1.2px),
-        radial-gradient(circle at 70% 65%, rgba(255,255,255,0.18) 0.6px, transparent 1.4px),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.14) 0.7px, transparent 1.6px);
-      background-size: 90px 90px, 110px 110px, 130px 130px;
-      transform: rotate(2deg);
-      mix-blend-mode: soft-light;
-      z-index: 2;
-      animation: grainDrift 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes grainDrift{
-      from { transform: translate3d(-8px, -6px, 0) rotate(2deg); }
-      to   { transform: translate3d(8px, 6px, 0) rotate(2deg); }
-    }
-
-    .slideInner{
-      position: relative;
-      z-index: 4;
-      padding: 28px;
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-      min-height: 560px;
-    }
-
-    /* subtle entrance */
-    .slide{ opacity:0; transform: translateY(14px); }
-    .slide.ready{ opacity:1; transform:none; transition: opacity .45s ease, transform .45s ease; }
-
-    /* Left */
-    .eyebrow{
-      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      letter-spacing: .20em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.78);
-      margin-bottom: 18px;
-    }
-
-    .title{
-      margin:0;
-      font-size: 70px;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-
-    .desc{
-      margin: 16px 0 18px;
-      font-size: 22px;
-      line-height: 1.25;
-      color: rgba(255,255,255,0.80);
-      max-width: 46ch;
-    }
-
-    .rule{
-      height: 10px;
-      width: 100%;
-      border-radius: 999px;
-      margin: 16px 0 28px;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.30), 0 12px 26px rgba(0,0,0,0.40);
-    }
-
-    .typoLabel{
-      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 10px;
-    }
-
-    .typoCard{
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 18px 18px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-      max-width: 620px;
-    }
-
-    .typoRow{
-      display:grid;
-      grid-template-columns: 120px 1fr;
-      gap: 16px;
-      align-items:baseline;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .typoRow:last-child{ border-bottom:0; }
-
-    .typoKey{
-      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: var(--accentText, #FFFF00);
-    }
-
-    .typoVal{
-      font-size: 18px;
-      color: rgba(255,255,255,0.88);
-    }
-
-    /* Right */
-    .paletteTitle{
-      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 10px;
-    }
-
-    .swatches{
-      display:flex;
-      gap:0; /* attached together */
-      border-radius: 14px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .swatch{
-      flex: 1 1 0;
-      min-width: 74px;
-      height: 170px;
-      position:relative;
-    }
-
-    .swatchCode{
-      position:absolute;
-      left: 10px;
-      bottom: 10px;
-      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      letter-spacing: .06em;
-      padding: 6px 8px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.35);
-      color: rgba(255,255,255,0.92);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .wordmarkWrap{
-      margin-top: 18px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 18px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-    }
-
-    .wordmark{
-      display:flex;
-      align-items:baseline;
-      gap: 0;
-      font-size: 74px;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      user-select:none;
-      filter: drop-shadow(0 22px 34px rgba(0,0,0,0.50));
-    }
-
-    .wmA{ color: var(--primary); }
-    .wmB{ color: var(--secondary); }
-
-    /* Glitch-ish hover (subtle) */
-    .wordmark:hover{
-      text-shadow:
-        2px 0 0 rgba(255,0,0,0.25),
-        -2px 0 0 rgba(0,255,255,0.22);
-      transform: translateY(-1px);
-      transition: text-shadow .18s ease, transform .18s ease;
-    }
-
-    .wordmarkMeta{
-      margin-top: 10px;
-      font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.68);
-    }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .slideInner{ grid-template-columns: 1fr; min-height: unset; }
-      .title{ font-size: 56px; }
-      .desc{ font-size: 20px; }
-      .wordmark{ font-size: 62px; }
-      .brandChip{ min-width: unset; }
-      .chipHint{ display:none; }
-    }
-
-    @media (max-width: 560px){
-      .topbarInner{ flex-wrap: wrap; gap: 10px; }
-      .selectWrap{ width: 100%; margin-left: 0; }
-      label{ display:none; }
-      .slideInner{ padding: 18px; }
-      .title{ font-size: 44px; }
-      .desc{ font-size: 18px; }
-      .swatch{ min-width: 64px; height: 150px; }
-      .wordmark{ font-size: 52px; }
-      .typoRow{ grid-template-columns: 100px 1fr; }
-    }
-
-    /* Light slides get automatic contrast */
-    .slide.isLight .eyebrow,
-    .slide.isLight .desc,
-    .slide.isLight .paletteTitle,
-    .slide.isLight .typoLabel,
-    .slide.isLight .typoVal,
-    .slide.isLight .wordmarkMeta{
-      color: rgba(0,0,0,0.72);
-    }
-
-    .slide.isLight .typoCard,
-    .slide.isLight .wordmarkWrap{
-      background: rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.10);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24);
-    }
-
-    .slide.isLight .typoRow{ border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .slide.isLight .swatches{ border: 1px solid rgba(0,0,0,0.10); }
-    .slide.isLight .swatchCode{ background: rgba(255,255,255,0.70); color: rgba(0,0,0,0.85); border: 1px solid rgba(0,0,0,0.10); }
-    .slide.isLight .wordmark:hover{
-      text-shadow:
-        2px 0 0 rgba(255,0,0,0.18),
-        -2px 0 0 rgba(0,255,255,0.18);
-    }
-
-    /* Debug/test panel (hidden by default) */
-    #testOutput{
-      display:none;
-      max-width: var(--max);
-      margin: 10px auto 0;
-      padding: 10px 18px;
-      color: rgba(255,255,255,0.78);
-      font-family: JetBrains Mono, ui-monospace, monospace;
-      font-size: 12px;
-      white-space: pre-wrap;
-    }
-
-  </style>
-</head>
-
-<body>
-  <header class="topbar">
-    <div class="topbarInner">
-      <div class="brandChip">
-        <div class="chipLogo">BRAND PITCH</div>
-        <div class="chipHint">one slide per theme • jump via dropdown</div>
-      </div>
-
-      <div class="selectWrap">
-        <label for="themeSelect">Direction</label>
-        <select id="themeSelect" aria-label="Select brand direction"></select>
-      </div>
-    </div>
-  </header>
-
-  <div id="testOutput"></div>
-
-  <main id="deck" class="deck" aria-label="Brand direction slide deck"></main>
-
-  <script>
-    // ===== Theme data (7 themes) =====
-    // Note: Each theme includes bg/text so slides can be dark OR light.
-    const THEMES = [
-      {
-        id: "signal-noise",
-        name: "SIGNAL / NOISE",
-        recommended: true,
-        description: "Broadcast UI + scanlines + frequency overlap — modern‑retro, high contrast.",
-        colors: {
-          primary: "#0066FF",     // frequencyBlue
-          secondary: "#FF3D00",   // signalOrange
-          accent: "#FFFF00",      // scanYellow
-          bg: "#0A0A0A",          // voidBlack
-          text: "#F8F8F8",        // ghostWhite
-          neutral: "#666666"      // staticGray
-        },
-        typography: {
-          headline: "Space Grotesk (700–900)",
-          body: "Inter (400–600)",
-          meta: "JetBrains Mono (400–700)",
-          headlineFamily: "Space Grotesk",
-          bodyFamily: "Inter",
-          metaFamily: "JetBrains Mono"
-        },
-        textures: { scanOpacity: 0.10, grainOpacity: 0.07 }
-      },
-
-      {
-        id: "interface-futures",
-        name: "INTERFACE FUTURES",
-        recommended: false,
-        description: "HUD overlays + grid systems + terminal prompts — clean, speculative, built for clarity.",
-        colors: {
-          primary: "#5B2EFF",     // deepViolet
-          secondary: "#00E5FF",   // holoCyan
-          accent: "#A3FF12",      // neonLime
-          bg: "#0B0F1A",          // carbon
-          text: "#EAF0FF",        // fog
-          neutral: "#5D6476"      // uiGray
-        },
-        typography: {
-          headline: "Syne (700–800)",
-          body: "DM Sans (400–700)",
-          meta: "IBM Plex Mono (400–600)",
-          headlineFamily: "Syne",
-          bodyFamily: "DM Sans",
-          metaFamily: "IBM Plex Mono"
-        },
-        textures: { scanOpacity: 0.06, grainOpacity: 0.05 }
-      },
-
-      {
-        id: "timeline-collision",
-        name: "TIMELINE COLLISION",
-        recommended: false,
-        description: "Zine grids + timestamps + archive labels — eras collide, but the system stays readable.",
-        colors: {
-          primary: "#FF2D55",     // collisionRed
-          secondary: "#00D1B2",   // timeTeal
-          accent: "#111111",      // inkBlack
-          bg: "#F4F1E8",          // archiveCream (light)
-          text: "#111111",        // inkBlack
-          neutral: "#6B6B6B"      // graphite
-        },
-        typography: {
-          headline: "Archivo Black (caps)",
-          body: "Work Sans (400–700)",
-          meta: "Space Mono (400–700)",
-          headlineFamily: "Archivo Black",
-          bodyFamily: "Work Sans",
-          metaFamily: "Space Mono"
-        },
-        textures: { scanOpacity: 0.04, grainOpacity: 0.06 }
-      },
-
-      {
-        id: "vhs-night-drive",
-        name: "VHS NIGHT DRIVE",
-        recommended: false,
-        description: "Night gradients + VHS noise + streetlight glow — kinetic, cinematic, late‑night clarity.",
-        colors: {
-          primary: "#FF2E88",     // neonPink
-          secondary: "#00B3FF",   // laserBlue
-          accent: "#FFB000",      // streetAmber
-          bg: "#070B1C",          // midnightNavy
-          text: "#F7F7FF",        // fogWhite
-          neutral: "#5A5A6A"      // vhsGray
-        },
-        typography: {
-          headline: "Bebas Neue (display)",
-          body: "Inter (400–600)",
-          meta: "Space Mono (400–700)",
-          headlineFamily: "Bebas Neue",
-          bodyFamily: "Inter",
-          metaFamily: "Space Mono"
-        },
-        textures: { scanOpacity: 0.12, grainOpacity: 0.08 }
-      },
-
-      {
-        id: "nostalgic-neon",
-        name: "NOSTALGIC NEON 🌴",
-        recommended: false,
-        description: "Synthwave + Miami holographics + VHS glitch — 80s future fantasy meets Gen‑Z reality.",
-        colors: {
-          primary: "#FF006E",     // Neon Magenta
-          secondary: "#00F5FF",   // Electric Cyan
-          accent: "#FB5607",      // Sunset Orange
-          bg: "#0B0B14",
-          text: "#F8F8FF",
-          neutral: "#4B4B5A"
-        },
-        typography: {
-          headline: "Archivo Black (skewed for italic vibe)",
-          body: "DM Sans (400–700)",
-          meta: "IBM Plex Mono (400–600)",
-          headlineFamily: "Archivo Black",
-          bodyFamily: "DM Sans",
-          metaFamily: "IBM Plex Mono",
-          headlineSkew: true
-        },
-        textures: { scanOpacity: 0.10, grainOpacity: 0.06 }
-      },
-
-      {
-        id: "pop-collision",
-        name: "POP COLLISION 😊",
-        recommended: false,
-        description: "Smiley/emoji culture + cassette pop graphics — friendly packaging for sharp ideas.",
-        colors: {
-          primary: "#FFED00",     // Pop Yellow
-          secondary: "#FF0080",   // Magenta Punch
-          accent: "#00D9FF",      // Hyper Cyan
-          bg: "#0A0A0A",
-          text: "#F8F8F8",
-          neutral: "#666666"
-        },
-        typography: {
-          headline: "Dela Gothic One (chunky)",
-          body: "Inter (400–600)",
-          meta: "Space Mono (400–700)",
-          headlineFamily: "Dela Gothic One",
-          bodyFamily: "Inter",
-          metaFamily: "Space Mono",
-          accentFamily: "Permanent Marker"
-        },
-        textures: { scanOpacity: 0.07, grainOpacity: 0.05 }
-      },
-
-      {
-        id: "street-culture",
-        name: "STREET CULTURE 🛹",
-        recommended: false,
-        description: "Graffiti energy + youth movement visuals — raw authenticity over polish.",
-        colors: {
-          primary: "#00FF41",     // Matrix Green
-          secondary: "#FF2E63",   // Rebel Red
-          accent: "#FFFB00",      // Tag Yellow
-          bg: "#0A0A0A",
-          text: "#F8F8F8",
-          neutral: "#666666"
-        },
-        typography: {
-          headline: "Bebas Neue (display)",
-          body: "DM Sans (400–700)",
-          meta: "IBM Plex Mono (400–600)",
-          headlineFamily: "Bebas Neue",
-          bodyFamily: "DM Sans",
-          metaFamily: "IBM Plex Mono",
-          accentFamily: "Permanent Marker"
-        },
-        textures: { scanOpacity: 0.09, grainOpacity: 0.07 }
+    <style>
+      :root {
+        --pageBg: #070707;
+        --pageText: #ededed;
+        --muted: #a9a9a9;
+        --panel: rgba(255, 255, 255, 0.04);
+        --panelBorder: rgba(255, 255, 255, 0.1);
+        --radius: 28px;
+        --radiusSm: 18px;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+        --max: 1180px;
       }
-    ];
 
-    // ===== Rendering =====
-    function isLightBg(hex){
-      // Simple luminance heuristic
-      const c = hex.replace('#','');
-      const r = parseInt(c.slice(0,2),16);
-      const g = parseInt(c.slice(2,4),16);
-      const b = parseInt(c.slice(4,6),16);
-      const lum = (0.2126*r + 0.7152*g + 0.0722*b)/255;
-      return lum > 0.72;
-    }
+      * {
+        box-sizing: border-box;
+      }
 
-    function safeText(t){
-      return String(t).replace(/[<>&]/g, s => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[s]));
-    }
+      html,
+      body {
+        height: 100%;
+      }
 
-    function buildSlide(theme){
-      const { id, name, description, colors, typography, textures } = theme;
-      const light = isLightBg(colors.bg);
+      body {
+        margin: 0;
+        background:
+          radial-gradient(
+            1200px 600px at 15% 0%,
+            rgba(255, 255, 255, 0.06),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 90% 20%,
+            rgba(255, 255, 255, 0.04),
+            transparent 60%
+          ),
+          var(--pageBg);
+        color: var(--pageText);
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: geometricPrecision;
+      }
 
-      const swatchOrder = [
-        { label: 'primary', value: colors.primary },
-        { label: 'secondary', value: colors.secondary },
-        { label: 'accent', value: colors.accent },
-        { label: 'bg', value: colors.bg },
-        { label: 'text', value: colors.text },
-        { label: 'neutral', value: colors.neutral }
+      /* ====== Topbar ====== */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: linear-gradient(
+          to bottom,
+          rgba(7, 7, 7, 0.88),
+          rgba(7, 7, 7, 0.68)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .topbarInner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brandChip {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 180px;
+      }
+
+      .chipLogo {
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          "Courier New",
+          monospace;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        white-space: nowrap;
+      }
+
+      .chipHint {
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .selectWrap {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: min(520px, 100%);
+      }
+
+      label {
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      select {
+        width: 100%;
+        height: 44px;
+        font-size: 16px;
+        color: var(--pageText);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        padding: 0 44px 0 16px;
+        outline: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        appearance: none;
+        -webkit-appearance: none;
+      }
+
+      .selectWrap {
+        position: relative;
+      }
+      .selectWrap::after {
+        content: "▾";
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+        font-size: 16px;
+      }
+
+      /* ====== Deck ====== */
+      .deck {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+      }
+
+      .slide {
+        position: relative;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: var(--shadow);
+        background: #0a0a0a;
+        isolation: isolate;
+        scroll-margin-top: 92px;
+      }
+
+      /* Non-destructive textures (scanlines + grain) */
+      .slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: var(--scanOpacity, 0.08);
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        mix-blend-mode: overlay;
+        z-index: 3;
+      }
+
+      .slide::after {
+        content: "";
+        position: absolute;
+        inset: -40px;
+        pointer-events: none;
+        opacity: var(--grainOpacity, 0.06);
+        background-image:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 255, 255, 0.22) 0.5px,
+            transparent 1.2px
+          ),
+          radial-gradient(
+            circle at 70% 65%,
+            rgba(255, 255, 255, 0.18) 0.6px,
+            transparent 1.4px
+          ),
+          radial-gradient(
+            circle at 40% 80%,
+            rgba(255, 255, 255, 0.14) 0.7px,
+            transparent 1.6px
+          );
+        background-size:
+          90px 90px,
+          110px 110px,
+          130px 130px;
+        transform: rotate(2deg);
+        mix-blend-mode: soft-light;
+        z-index: 2;
+        animation: grainDrift 8s ease-in-out infinite alternate;
+      }
+
+      @keyframes grainDrift {
+        from {
+          transform: translate3d(-8px, -6px, 0) rotate(2deg);
+        }
+        to {
+          transform: translate3d(8px, 6px, 0) rotate(2deg);
+        }
+      }
+
+      .slideInner {
+        position: relative;
+        z-index: 4;
+        padding: 28px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 22px;
+        min-height: 560px;
+      }
+
+      /* subtle entrance */
+      .slide {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      .slide.ready {
+        opacity: 1;
+        transform: none;
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s ease;
+      }
+
+      /* Left */
+      .eyebrow {
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          "Courier New",
+          monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.78);
+        margin-bottom: 18px;
+      }
+
+      .title {
+        margin: 0;
+        font-size: 70px;
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+      }
+
+      .desc {
+        margin: 16px 0 18px;
+        font-size: 22px;
+        line-height: 1.25;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 46ch;
+      }
+
+      .rule {
+        height: 10px;
+        width: 100%;
+        border-radius: 999px;
+        margin: 16px 0 28px;
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.3),
+          0 12px 26px rgba(0, 0, 0, 0.4);
+      }
+
+      .typoLabel {
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          "Courier New",
+          monospace;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 10px;
+      }
+
+      .typoCard {
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 18px 18px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        max-width: 620px;
+      }
+
+      .typoRow {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 16px;
+        align-items: baseline;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .typoRow:last-child {
+        border-bottom: 0;
+      }
+
+      .typoKey {
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          "Courier New",
+          monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: var(--accentText, #ffff00);
+      }
+
+      .typoVal {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      /* Right */
+      .paletteTitle {
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          "Courier New",
+          monospace;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 10px;
+      }
+
+      .swatches {
+        display: flex;
+        gap: 0; /* attached together */
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .swatch {
+        flex: 1 1 0;
+        min-width: 74px;
+        height: 170px;
+        position: relative;
+      }
+
+      .swatchCode {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          "Courier New",
+          monospace;
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        padding: 6px 8px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.35);
+        color: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .wordmarkWrap {
+        margin-top: 18px;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 18px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      }
+
+      .wordmark {
+        display: flex;
+        align-items: baseline;
+        gap: 0;
+        font-size: 74px;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        user-select: none;
+        filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.5));
+      }
+
+      .wmA {
+        color: var(--primary);
+      }
+      .wmB {
+        color: var(--secondary);
+      }
+
+      /* Glitch-ish hover (subtle) */
+      .wordmark:hover {
+        text-shadow:
+          2px 0 0 rgba(255, 0, 0, 0.25),
+          -2px 0 0 rgba(0, 255, 255, 0.22);
+        transform: translateY(-1px);
+        transition:
+          text-shadow 0.18s ease,
+          transform 0.18s ease;
+      }
+
+      .wordmarkMeta {
+        margin-top: 10px;
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          "Courier New",
+          monospace;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.68);
+      }
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        .slideInner {
+          grid-template-columns: 1fr;
+          min-height: unset;
+        }
+        .title {
+          font-size: 56px;
+        }
+        .desc {
+          font-size: 20px;
+        }
+        .wordmark {
+          font-size: 62px;
+        }
+        .brandChip {
+          min-width: unset;
+        }
+        .chipHint {
+          display: none;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .topbarInner {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .selectWrap {
+          width: 100%;
+          margin-left: 0;
+        }
+        label {
+          display: none;
+        }
+        .slideInner {
+          padding: 18px;
+        }
+        .title {
+          font-size: 44px;
+        }
+        .desc {
+          font-size: 18px;
+        }
+        .swatch {
+          min-width: 64px;
+          height: 150px;
+        }
+        .wordmark {
+          font-size: 52px;
+        }
+        .typoRow {
+          grid-template-columns: 100px 1fr;
+        }
+      }
+
+      /* Light slides get automatic contrast */
+      .slide.isLight .eyebrow,
+      .slide.isLight .desc,
+      .slide.isLight .paletteTitle,
+      .slide.isLight .typoLabel,
+      .slide.isLight .typoVal,
+      .slide.isLight .wordmarkMeta {
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .slide.isLight .typoCard,
+      .slide.isLight .wordmarkWrap {
+        background: rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      }
+
+      .slide.isLight .typoRow {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .slide.isLight .swatches {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .slide.isLight .swatchCode {
+        background: rgba(255, 255, 255, 0.7);
+        color: rgba(0, 0, 0, 0.85);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .slide.isLight .wordmark:hover {
+        text-shadow:
+          2px 0 0 rgba(255, 0, 0, 0.18),
+          -2px 0 0 rgba(0, 255, 255, 0.18);
+      }
+
+      /* Debug/test panel (hidden by default) */
+      #testOutput {
+        display: none;
+        max-width: var(--max);
+        margin: 10px auto 0;
+        padding: 10px 18px;
+        color: rgba(255, 255, 255, 0.78);
+        font-family:
+          JetBrains Mono,
+          ui-monospace,
+          monospace;
+        font-size: 12px;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="topbarInner">
+        <div class="brandChip">
+          <div class="chipLogo">BRAND PITCH</div>
+          <div class="chipHint">one slide per theme • jump via dropdown</div>
+        </div>
+
+        <div class="selectWrap">
+          <label for="themeSelect">Direction</label>
+          <select id="themeSelect" aria-label="Select brand direction"></select>
+        </div>
+      </div>
+    </header>
+
+    <div id="testOutput"></div>
+
+    <main id="deck" class="deck" aria-label="Brand direction slide deck"></main>
+
+    <script>
+      // ===== Theme data (7 themes) =====
+      // Note: Each theme includes bg/text so slides can be dark OR light.
+      const THEMES = [
+        {
+          id: "signal-noise",
+          name: "SIGNAL / NOISE",
+          recommended: true,
+          description:
+            "Broadcast UI + scanlines + frequency overlap — modern‑retro, high contrast.",
+          colors: {
+            primary: "#0066FF", // frequencyBlue
+            secondary: "#FF3D00", // signalOrange
+            accent: "#FFFF00", // scanYellow
+            bg: "#0A0A0A", // voidBlack
+            text: "#F8F8F8", // ghostWhite
+            neutral: "#666666", // staticGray
+          },
+          typography: {
+            headline: "Space Grotesk (700–900)",
+            body: "Inter (400–600)",
+            meta: "JetBrains Mono (400–700)",
+            headlineFamily: "Space Grotesk",
+            bodyFamily: "Inter",
+            metaFamily: "JetBrains Mono",
+          },
+          textures: { scanOpacity: 0.1, grainOpacity: 0.07 },
+        },
+
+        {
+          id: "interface-futures",
+          name: "INTERFACE FUTURES",
+          recommended: false,
+          description:
+            "HUD overlays + grid systems + terminal prompts — clean, speculative, built for clarity.",
+          colors: {
+            primary: "#5B2EFF", // deepViolet
+            secondary: "#00E5FF", // holoCyan
+            accent: "#A3FF12", // neonLime
+            bg: "#0B0F1A", // carbon
+            text: "#EAF0FF", // fog
+            neutral: "#5D6476", // uiGray
+          },
+          typography: {
+            headline: "Syne (700–800)",
+            body: "DM Sans (400–700)",
+            meta: "IBM Plex Mono (400–600)",
+            headlineFamily: "Syne",
+            bodyFamily: "DM Sans",
+            metaFamily: "IBM Plex Mono",
+          },
+          textures: { scanOpacity: 0.06, grainOpacity: 0.05 },
+        },
+
+        {
+          id: "timeline-collision",
+          name: "TIMELINE COLLISION",
+          recommended: false,
+          description:
+            "Zine grids + timestamps + archive labels — eras collide, but the system stays readable.",
+          colors: {
+            primary: "#FF2D55", // collisionRed
+            secondary: "#00D9FF", // timeTeal
+            accent: "#111111", // inkBlack
+            bg: "#F4F1E8", // archiveCream (light)
+            text: "#111111", // inkBlack
+            neutral: "#6B6B6B", // graphite
+          },
+          typography: {
+            headline: "Archivo Black (caps)",
+            body: "Work Sans (400–700)",
+            meta: "Space Mono (400–700)",
+            headlineFamily: "Archivo Black",
+            bodyFamily: "Work Sans",
+            metaFamily: "Space Mono",
+          },
+          textures: { scanOpacity: 0.04, grainOpacity: 0.06 },
+        },
+
+        {
+          id: "vhs-night-drive",
+          name: "VHS NIGHT DRIVE",
+          recommended: false,
+          description:
+            "Night gradients + VHS noise + streetlight glow — kinetic, cinematic, late‑night clarity.",
+          colors: {
+            primary: "#FF2E88", // neonPink
+            secondary: "#00B3FF", // laserBlue
+            accent: "#FFB000", // streetAmber
+            bg: "#070B1C", // midnightNavy
+            text: "#F7F7FF", // fogWhite
+            neutral: "#5A5A6A", // vhsGray
+          },
+          typography: {
+            headline: "Bebas Neue (display)",
+            body: "Inter (400–600)",
+            meta: "Space Mono (400–700)",
+            headlineFamily: "Bebas Neue",
+            bodyFamily: "Inter",
+            metaFamily: "Space Mono",
+          },
+          textures: { scanOpacity: 0.12, grainOpacity: 0.08 },
+        },
+
+        {
+          id: "nostalgic-neon",
+          name: "NOSTALGIC NEON 🌴",
+          recommended: false,
+          description:
+            "Synthwave + Miami holographics + VHS glitch — 80s future fantasy meets Gen‑Z reality.",
+          colors: {
+            primary: "#FF006E", // Neon Magenta
+            secondary: "#00F5FF", // Electric Cyan
+            accent: "#FB5607", // Sunset Orange
+            bg: "#0B0B14",
+            text: "#F8F8FF",
+            neutral: "#4B4B5A",
+          },
+          typography: {
+            headline: "Archivo Black (skewed for italic vibe)",
+            body: "DM Sans (400–700)",
+            meta: "IBM Plex Mono (400–600)",
+            headlineFamily: "Archivo Black",
+            bodyFamily: "DM Sans",
+            metaFamily: "IBM Plex Mono",
+            headlineSkew: true,
+          },
+          textures: { scanOpacity: 0.1, grainOpacity: 0.06 },
+        },
+
+        {
+          id: "pop-collision",
+          name: "POP COLLISION 😊",
+          recommended: false,
+          description:
+            "Smiley/emoji culture + cassette pop graphics — friendly packaging for sharp ideas.",
+          colors: {
+            primary: "#FFED00", // Pop Yellow
+            secondary: "#FF0080", // Magenta Punch
+            accent: "#00D9FF", // Hyper Cyan
+            bg: "#0A0A0A",
+            text: "#F8F8F8",
+            neutral: "#666666",
+          },
+          typography: {
+            headline: "Dela Gothic One (chunky)",
+            body: "Inter (400–600)",
+            meta: "Space Mono (400–700)",
+            headlineFamily: "Dela Gothic One",
+            bodyFamily: "Inter",
+            metaFamily: "Space Mono",
+            accentFamily: "Permanent Marker",
+          },
+          textures: { scanOpacity: 0.07, grainOpacity: 0.05 },
+        },
+
+        {
+          id: "street-culture",
+          name: "STREET CULTURE 🛹",
+          recommended: false,
+          description:
+            "Graffiti energy + youth movement visuals — raw authenticity over polish.",
+          colors: {
+            primary: "#00FF41", // Matrix Green
+            secondary: "#FF2E63", // Rebel Red
+            accent: "#FFFB00", // Tag Yellow
+            bg: "#0A0A0A",
+            text: "#F8F8F8",
+            neutral: "#666666",
+          },
+          typography: {
+            headline: "Bebas Neue (display)",
+            body: "DM Sans (400–700)",
+            meta: "IBM Plex Mono (400–600)",
+            headlineFamily: "Bebas Neue",
+            bodyFamily: "DM Sans",
+            metaFamily: "IBM Plex Mono",
+            accentFamily: "Permanent Marker",
+          },
+          textures: { scanOpacity: 0.09, grainOpacity: 0.07 },
+        },
       ];
 
-      const titleFamily = typography.headlineFamily || 'Inter';
-      const bodyFamily = typography.bodyFamily || 'Inter';
-      const metaFamily = typography.metaFamily || 'JetBrains Mono';
-      const skew = typography.headlineSkew ? 'transform: skewX(-10deg); display:inline-block;' : '';
+      // ===== Rendering =====
+      function isLightBg(hex) {
+        // Simple luminance heuristic
+        const c = hex.replace("#", "");
+        const r = parseInt(c.slice(0, 2), 16);
+        const g = parseInt(c.slice(2, 4), 16);
+        const b = parseInt(c.slice(4, 6), 16);
+        const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+        return lum > 0.72;
+      }
 
-      const slide = document.createElement('section');
-      slide.className = `slide ${light ? 'isLight' : ''}`;
-      slide.id = id;
-      slide.style.background = `radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,${light ? 0.22 : 0.07}), transparent 55%), radial-gradient(900px 520px at 90% 40%, rgba(255,255,255,${light ? 0.16 : 0.06}), transparent 60%), ${colors.bg}`;
-      slide.style.color = colors.text;
-      slide.style.setProperty('--scanOpacity', String(textures?.scanOpacity ?? 0.08));
-      slide.style.setProperty('--grainOpacity', String(textures?.grainOpacity ?? 0.06));
-      slide.style.setProperty('--accentText', colors.accent);
+      function safeText(t) {
+        return String(t).replace(
+          /[<>&]/g,
+          (s) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[s],
+        );
+      }
 
-      slide.innerHTML = `
+      function buildSlide(theme) {
+        const { id, name, description, colors, typography, textures } = theme;
+        const light = isLightBg(colors.bg);
+
+        const swatchOrder = [
+          { label: "primary", value: colors.primary },
+          { label: "secondary", value: colors.secondary },
+          { label: "accent", value: colors.accent },
+          { label: "bg", value: colors.bg },
+          { label: "text", value: colors.text },
+          { label: "neutral", value: colors.neutral },
+        ];
+
+        const titleFamily = typography.headlineFamily || "Inter";
+        const bodyFamily = typography.bodyFamily || "Inter";
+        const metaFamily = typography.metaFamily || "JetBrains Mono";
+        const skew = typography.headlineSkew
+          ? "transform: skewX(-10deg); display:inline-block;"
+          : "";
+
+        const slide = document.createElement("section");
+        slide.className = `slide ${light ? "isLight" : ""}`;
+        slide.id = id;
+        slide.style.background = `radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,${light ? 0.22 : 0.07}), transparent 55%), radial-gradient(900px 520px at 90% 40%, rgba(255,255,255,${light ? 0.16 : 0.06}), transparent 60%), ${colors.bg}`;
+        slide.style.color = colors.text;
+        slide.style.setProperty(
+          "--scanOpacity",
+          String(textures?.scanOpacity ?? 0.08),
+        );
+        slide.style.setProperty(
+          "--grainOpacity",
+          String(textures?.grainOpacity ?? 0.06),
+        );
+        slide.style.setProperty("--accentText", colors.accent);
+
+        slide.innerHTML = `
         <div class="slideInner">
           <div>
             <div class="eyebrow">BTW GEN • BRAND DIRECTION</div>
             <h1 class="title" style="font-family:${safeText(titleFamily)}, Inter, system-ui; ${skew}">${safeText(name)}</h1>
-            <p class="desc" style="font-family:${safeText(bodyFamily)}, Inter, system-ui; color:${light ? 'rgba(0,0,0,0.78)' : 'rgba(255,255,255,0.80)'}">${safeText(description)}</p>
+            <p class="desc" style="font-family:${safeText(bodyFamily)}, Inter, system-ui; color:${light ? "rgba(0,0,0,0.78)" : "rgba(255,255,255,0.80)"}">${safeText(description)}</p>
             <div class="rule" style="background:${safeText(colors.accent)}"></div>
 
             <div class="typoLabel">TYPOGRAPHY</div>
@@ -691,11 +884,15 @@
           <div>
             <div class="paletteTitle">PALETTE</div>
             <div class="swatches" aria-label="Color palette">
-              ${swatchOrder.map(s => `
+              ${swatchOrder
+                .map(
+                  (s) => `
                 <div class="swatch" style="background:${safeText(s.value)}">
                   <div class="swatchCode">${safeText(s.value.toUpperCase())}</div>
                 </div>
-              `).join('')}
+              `,
+                )
+                .join("")}
             </div>
 
             <div class="wordmarkWrap" aria-label="Wordmark preview">
@@ -708,98 +905,126 @@
         </div>
       `;
 
-      return slide;
-    }
-
-    function buildOptions(themes){
-      const select = document.getElementById('themeSelect');
-      if (!select) return;
-
-      select.innerHTML = themes.map(t => {
-        const label = t.recommended ? `${t.name} (Recommended)` : t.name;
-        return `<option value="#${t.id}">${safeText(label)}</option>`;
-      }).join('');
-
-      // Default selection
-      const rec = themes.find(t => t.recommended) || themes[0];
-      select.value = `#${rec.id}`;
-
-      // Jump on change
-      select.addEventListener('change', (e) => {
-        const hash = e.target.value;
-        const el = document.querySelector(hash);
-        if (el) {
-          history.replaceState(null, '', hash);
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    }
-
-    function runSmokeTests(){
-      const outEl = document.getElementById('testOutput');
-      const lines = [];
-      function t(name, fn){
-        try{ fn(); lines.push(`✓ ${name}`); }
-        catch(err){ lines.push(`✗ ${name} — ${err.message || err}`); }
+        return slide;
       }
 
-      t('THEMES has 7 items', () => {
-        if (THEMES.length !== 7) throw new Error(`expected 7, got ${THEMES.length}`);
-      });
+      function buildOptions(themes) {
+        const select = document.getElementById("themeSelect");
+        if (!select) return;
 
-      t('Each theme has required fields', () => {
-        const required = ['id','name','description','colors','typography'];
-        THEMES.forEach((th, i) => {
-          required.forEach(k => { if (!(k in th)) throw new Error(`theme[${i}] missing ${k}`); });
-          ['primary','secondary','accent','bg','text','neutral'].forEach(k => {
-            if (!th.colors?.[k]) throw new Error(`${th.id} missing colors.${k}`);
-          });
-          ['headline','body','meta','headlineFamily','bodyFamily','metaFamily'].forEach(k => {
-            if (!th.typography?.[k]) throw new Error(`${th.id} missing typography.${k}`);
+        select.innerHTML = themes
+          .map((t) => {
+            const label = t.recommended ? `${t.name} (Recommended)` : t.name;
+            return `<option value="#${t.id}">${safeText(label)}</option>`;
+          })
+          .join("");
+
+        // Default selection
+        const rec = themes.find((t) => t.recommended) || themes[0];
+        select.value = `#${rec.id}`;
+
+        // Jump on change
+        select.addEventListener("change", (e) => {
+          const hash = e.target.value;
+          const el = document.querySelector(hash);
+          if (el) {
+            history.replaceState(null, "", hash);
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      }
+
+      function runSmokeTests() {
+        const outEl = document.getElementById("testOutput");
+        const lines = [];
+        function t(name, fn) {
+          try {
+            fn();
+            lines.push(`✓ ${name}`);
+          } catch (err) {
+            lines.push(`✗ ${name} — ${err.message || err}`);
+          }
+        }
+
+        t("THEMES has 7 items", () => {
+          if (THEMES.length !== 7)
+            throw new Error(`expected 7, got ${THEMES.length}`);
+        });
+
+        t("Each theme has required fields", () => {
+          const required = [
+            "id",
+            "name",
+            "description",
+            "colors",
+            "typography",
+          ];
+          THEMES.forEach((th, i) => {
+            required.forEach((k) => {
+              if (!(k in th)) throw new Error(`theme[${i}] missing ${k}`);
+            });
+            ["primary", "secondary", "accent", "bg", "text", "neutral"].forEach(
+              (k) => {
+                if (!th.colors?.[k])
+                  throw new Error(`${th.id} missing colors.${k}`);
+              },
+            );
+            [
+              "headline",
+              "body",
+              "meta",
+              "headlineFamily",
+              "bodyFamily",
+              "metaFamily",
+            ].forEach((k) => {
+              if (!th.typography?.[k])
+                throw new Error(`${th.id} missing typography.${k}`);
+            });
           });
         });
-      });
 
-      t('DOM has deck + select', () => {
-        if (!document.getElementById('deck')) throw new Error('missing #deck');
-        if (!document.getElementById('themeSelect')) throw new Error('missing #themeSelect');
-      });
+        t("DOM has deck + select", () => {
+          if (!document.getElementById("deck"))
+            throw new Error("missing #deck");
+          if (!document.getElementById("themeSelect"))
+            throw new Error("missing #themeSelect");
+        });
 
-      // Keep hidden by default; toggle by appending ?debug=1
-      const debug = new URLSearchParams(location.search).get('debug') === '1';
-      if (debug && outEl){
-        outEl.style.display = 'block';
-        outEl.textContent = lines.join('\n');
+        // Keep hidden by default; toggle by appending ?debug=1
+        const debug = new URLSearchParams(location.search).get("debug") === "1";
+        if (debug && outEl) {
+          outEl.style.display = "block";
+          outEl.textContent = lines.join("\n");
+        }
+
+        // Always log failures in console
+        lines.filter((l) => l.startsWith("✗")).forEach((l) => console.error(l));
       }
 
-      // Always log failures in console
-      lines.filter(l => l.startsWith('✗')).forEach(l => console.error(l));
-    }
+      function wire() {
+        const deck = document.getElementById("deck");
+        if (!deck) return;
 
-    function wire(){
-      const deck = document.getElementById('deck');
-      if (!deck) return;
+        deck.innerHTML = "";
+        THEMES.forEach((theme, idx) => {
+          const slide = buildSlide(theme);
+          deck.appendChild(slide);
+          // stagger entrance
+          setTimeout(() => slide.classList.add("ready"), 90 + idx * 60);
+        });
 
-      deck.innerHTML = '';
-      THEMES.forEach((theme, idx) => {
-        const slide = buildSlide(theme);
-        deck.appendChild(slide);
-        // stagger entrance
-        setTimeout(() => slide.classList.add('ready'), 90 + idx * 60);
-      });
+        buildOptions(THEMES);
 
-      buildOptions(THEMES);
+        // If a hash is present, jump to it (after render)
+        if (location.hash) {
+          const el = document.querySelector(location.hash);
+          if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
+        }
 
-      // If a hash is present, jump to it (after render)
-      if (location.hash){
-        const el = document.querySelector(location.hash);
-        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+        runSmokeTests();
       }
 
-      runSmokeTests();
-    }
-
-    document.addEventListener('DOMContentLoaded', wire);
-  </script>
-</body>
+      document.addEventListener("DOMContentLoaded", wire);
+    </script>
+  </body>
 </html>
