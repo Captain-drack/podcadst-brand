@@ -62,6 +62,127 @@
         text-transform: uppercase;
       }
 
+      /* More Button */
+      @keyframes btnPulse {
+        0%,
+        100% {
+          box-shadow:
+            0 0 8px rgba(0, 245, 255, 0.3),
+            0 0 20px rgba(255, 0, 110, 0.15);
+        }
+        50% {
+          box-shadow:
+            0 0 16px rgba(0, 245, 255, 0.5),
+            0 0 40px rgba(255, 0, 110, 0.25),
+            0 0 60px rgba(0, 245, 255, 0.1);
+        }
+      }
+      @keyframes dotSpin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      .more-btn {
+        position: absolute;
+        top: 50%;
+        right: 32px;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 110, 0.12),
+          rgba(0, 245, 255, 0.12)
+        );
+        border: 1px solid rgba(0, 245, 255, 0.3);
+        border-radius: 50px;
+        color: #ccc;
+        text-decoration: none;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        cursor: pointer;
+        animation: btnPulse 3s ease-in-out infinite;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .more-btn:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 110, 0.25),
+          rgba(0, 245, 255, 0.25)
+        );
+        border-color: rgba(0, 245, 255, 0.6);
+        color: #fff;
+        transform: translateY(-50%) scale(1.05);
+        box-shadow:
+          0 0 24px rgba(0, 245, 255, 0.5),
+          0 0 50px rgba(255, 0, 110, 0.3),
+          0 0 80px rgba(0, 245, 255, 0.15);
+      }
+      .more-btn-text {
+        background: linear-gradient(90deg, #ccc, #00f5ff, #ff006e, #ccc);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 4s linear infinite;
+      }
+      .more-btn-icon {
+        display: grid;
+        grid-template-columns: repeat(2, 5px);
+        grid-template-rows: repeat(2, 5px);
+        gap: 3px;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .more-btn:hover .more-btn-icon {
+        animation: dotSpin 0.6s ease-in-out;
+      }
+      .more-btn-icon span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #00f5ff;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 4px rgba(0, 245, 255, 0.5);
+      }
+      .more-btn-icon span:nth-child(2) {
+        background: #ff006e;
+        box-shadow: 0 0 4px rgba(255, 0, 110, 0.5);
+      }
+      .more-btn-icon span:nth-child(3) {
+        background: #ff006e;
+        box-shadow: 0 0 4px rgba(255, 0, 110, 0.5);
+      }
+      .more-btn:hover .more-btn-icon span {
+        background: #fff;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+      }
+      @media (max-width: 680px) {
+        .more-btn {
+          position: static;
+          transform: none;
+          margin: 14px auto 0;
+          justify-content: center;
+        }
+        .more-btn:hover {
+          transform: scale(1.05);
+        }
+      }
+
       /* Display sections as stacked blocks */
       .theme-section {
         padding: 80px 40px;
@@ -348,6 +469,12 @@
       <div class="header-sub">
         Selected Wordmarks · 3 Color Variants · 3 Themes
       </div>
+      <a href="LogoAll.html" class="more-btn">
+        <div class="more-btn-icon">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <span class="more-btn-text"></span>All Logos</span>
+      </a>
     </header>
 
     <main>

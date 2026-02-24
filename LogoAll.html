@@ -296,6 +296,93 @@
         color: #141414;
       }
 
+      /* Back Button */
+      @keyframes backBtnPulse {
+        0%,
+        100% {
+          box-shadow:
+            0 0 8px rgba(0, 245, 255, 0.3),
+            0 0 20px rgba(255, 0, 110, 0.15);
+        }
+        50% {
+          box-shadow:
+            0 0 16px rgba(0, 245, 255, 0.5),
+            0 0 40px rgba(255, 0, 110, 0.25),
+            0 0 60px rgba(0, 245, 255, 0.1);
+        }
+      }
+      @keyframes backShimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      .back-btn {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 110, 0.12),
+          rgba(0, 245, 255, 0.12)
+        );
+        border: 1px solid rgba(0, 245, 255, 0.3);
+        border-radius: 50px;
+        color: #ccc;
+        text-decoration: none;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        cursor: pointer;
+        animation: backBtnPulse 3s ease-in-out infinite;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .back-btn:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 110, 0.25),
+          rgba(0, 245, 255, 0.25)
+        );
+        border-color: rgba(0, 245, 255, 0.6);
+        color: #fff;
+        transform: translateY(-50%) scale(1.05);
+        box-shadow:
+          0 0 24px rgba(0, 245, 255, 0.5),
+          0 0 50px rgba(255, 0, 110, 0.3);
+      }
+      .back-btn-arrow {
+        font-size: 16px;
+        line-height: 1;
+        transition: transform 0.3s ease;
+      }
+      .back-btn:hover .back-btn-arrow {
+        transform: translateX(-4px);
+      }
+      .back-btn-text {
+        background: linear-gradient(90deg, #ccc, #00f5ff, #ff006e, #ccc);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: backShimmer 4s linear infinite;
+      }
+      @media (max-width: 680px) {
+        .back-btn {
+          padding: 8px 14px;
+          font-size: 9px;
+          letter-spacing: 2px;
+          left: 10px;
+        }
+      }
+
       /* Modal Styles */
       .modal {
         position: fixed;
@@ -386,6 +473,10 @@
     </header>
 
     <nav class="theme-nav">
+      <a href="index.html" class="back-btn">
+        <span class="back-btn-arrow">←</span>
+        <span class="back-btn-text">Home</span>
+      </a>
       <button class="theme-btn active" onclick="switchTheme('neon', this)">
         Nostalgic Neon
       </button>
