@@ -1,1036 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BTW GEN — Brand Direction Slides (7 Themes)</title>
-
-    <!-- Google Fonts (theme-specific). Keeping in one request for reliability. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Archivo+Black&family=Work+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&family=Courier+Prime:wght@400;700&family=Dela+Gothic+One&family=Permanent+Marker&family=Bebas+Neue&display=swap"
-      rel="stylesheet"
-    />
-
-    <style>
-      :root {
-        --pageBg: #070707;
-        --pageText: #ededed;
-        --muted: #a9a9a9;
-        --panel: rgba(255, 255, 255, 0.04);
-        --panelBorder: rgba(255, 255, 255, 0.1);
-        --radius: 28px;
-        --radiusSm: 18px;
-        --shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
-        --max: 1180px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        height: 100%;
-      }
-
-      body {
-        margin: 0;
-        background:
-          radial-gradient(
-            1200px 600px at 15% 0%,
-            rgba(255, 255, 255, 0.06),
-            transparent 60%
-          ),
-          radial-gradient(
-            900px 500px at 90% 20%,
-            rgba(255, 255, 255, 0.04),
-            transparent 60%
-          ),
-          var(--pageBg);
-        color: var(--pageText);
-        font-family:
-          Inter,
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          Helvetica,
-          Arial;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: geometricPrecision;
-      }
-
-      /* ====== Topbar ====== */
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        background: linear-gradient(
-          to bottom,
-          rgba(7, 7, 7, 0.88),
-          rgba(7, 7, 7, 0.68)
-        );
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .topbarInner {
-        max-width: var(--max);
-        margin: 0 auto;
-        padding: 14px 18px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .brandChip {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        min-width: 180px;
-      }
-
-      .chipLogo {
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          "Liberation Mono",
-          "Courier New",
-          monospace;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        font-size: 14px;
-        padding: 9px 12px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-        white-space: nowrap;
-      }
-
-      .chipHint {
-        color: var(--muted);
-        font-size: 13px;
-        white-space: nowrap;
-      }
-
-      .selectWrap {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        width: min(520px, 100%);
-      }
-
-      label {
-        color: var(--muted);
-        font-size: 12px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        white-space: nowrap;
-      }
-
-      select {
-        width: 100%;
-        height: 44px;
-        font-size: 16px;
-        color: var(--pageText);
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 999px;
-        padding: 0 44px 0 16px;
-        outline: none;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-        appearance: none;
-        -webkit-appearance: none;
-      }
-
-      .selectWrap {
-        position: relative;
-      }
-      .selectWrap::after {
-        content: "▾";
-        position: absolute;
-        right: 18px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: rgba(255, 255, 255, 0.7);
-        pointer-events: none;
-        font-size: 16px;
-      }
-
-      /* ====== Deck ====== */
-      .deck {
-        max-width: var(--max);
-        margin: 0 auto;
-        padding: 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 26px;
-      }
-
-      .slide {
-        position: relative;
-        border-radius: 22px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: var(--shadow);
-        background: #0a0a0a;
-        isolation: isolate;
-        scroll-margin-top: 92px;
-      }
-
-      /* Non-destructive textures (scanlines + grain) */
-      .slide::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        opacity: var(--scanOpacity, 0.08);
-        background: repeating-linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.05),
-          rgba(255, 255, 255, 0.05) 1px,
-          transparent 1px,
-          transparent 3px
-        );
-        mix-blend-mode: overlay;
-        z-index: 3;
-      }
-
-      .slide::after {
-        content: "";
-        position: absolute;
-        inset: -40px;
-        pointer-events: none;
-        opacity: var(--grainOpacity, 0.06);
-        background-image:
-          radial-gradient(
-            circle at 20% 30%,
-            rgba(255, 255, 255, 0.22) 0.5px,
-            transparent 1.2px
-          ),
-          radial-gradient(
-            circle at 70% 65%,
-            rgba(255, 255, 255, 0.18) 0.6px,
-            transparent 1.4px
-          ),
-          radial-gradient(
-            circle at 40% 80%,
-            rgba(255, 255, 255, 0.14) 0.7px,
-            transparent 1.6px
-          );
-        background-size:
-          90px 90px,
-          110px 110px,
-          130px 130px;
-        transform: rotate(2deg);
-        mix-blend-mode: soft-light;
-        z-index: 2;
-        animation: grainDrift 8s ease-in-out infinite alternate;
-      }
-
-      @keyframes grainDrift {
-        from {
-          transform: translate3d(-8px, -6px, 0) rotate(2deg);
-        }
-        to {
-          transform: translate3d(8px, 6px, 0) rotate(2deg);
-        }
-      }
-
-      .slideInner {
-        position: relative;
-        z-index: 4;
-        padding: 28px;
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 22px;
-        min-height: 560px;
-      }
-
-      /* subtle entrance */
-      .slide {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-      .slide.ready {
-        opacity: 1;
-        transform: none;
-        transition:
-          opacity 0.45s ease,
-          transform 0.45s ease;
-      }
-
-      /* Left */
-      .eyebrow {
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          "Liberation Mono",
-          "Courier New",
-          monospace;
-        font-size: 12px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.78);
-        margin-bottom: 18px;
-      }
-
-      .title {
-        margin: 0;
-        font-size: 70px;
-        line-height: 0.95;
-        letter-spacing: -0.02em;
-        text-transform: uppercase;
-      }
-
-      .desc {
-        margin: 16px 0 18px;
-        font-size: 22px;
-        line-height: 1.25;
-        color: rgba(255, 255, 255, 0.8);
-        max-width: 46ch;
-      }
-
-      .rule {
-        height: 10px;
-        width: 100%;
-        border-radius: 999px;
-        margin: 16px 0 28px;
-        box-shadow:
-          0 0 0 1px rgba(0, 0, 0, 0.3),
-          0 12px 26px rgba(0, 0, 0, 0.4);
-      }
-
-      .typoLabel {
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          "Liberation Mono",
-          "Courier New",
-          monospace;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.75);
-        margin-bottom: 10px;
-      }
-
-      .typoCard {
-        border-radius: var(--radius);
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 18px 18px;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-        max-width: 620px;
-      }
-
-      .typoRow {
-        display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 16px;
-        align-items: baseline;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .typoRow:last-child {
-        border-bottom: 0;
-      }
-
-      .typoKey {
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          "Liberation Mono",
-          "Courier New",
-          monospace;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        font-size: 12px;
-        color: var(--accentText, #ffff00);
-      }
-
-      .typoVal {
-        font-size: 18px;
-        color: rgba(255, 255, 255, 0.88);
-      }
-
-      /* Right */
-      .paletteTitle {
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          "Liberation Mono",
-          "Courier New",
-          monospace;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.75);
-        margin-bottom: 10px;
-      }
-
-      .swatches {
-        display: flex;
-        gap: 0; /* attached together */
-        border-radius: 14px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .swatch {
-        flex: 1 1 0;
-        min-width: 74px;
-        height: 170px;
-        position: relative;
-      }
-
-      .swatchCode {
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          "Liberation Mono",
-          "Courier New",
-          monospace;
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        padding: 6px 8px;
-        border-radius: 999px;
-        background: rgba(0, 0, 0, 0.35);
-        color: rgba(255, 255, 255, 0.92);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-
-      .wordmarkWrap {
-        margin-top: 18px;
-        border-radius: var(--radius);
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 18px;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      .wordmark {
-        display: flex;
-        align-items: baseline;
-        gap: 0;
-        font-size: 74px;
-        line-height: 0.95;
-        letter-spacing: -0.03em;
-        text-transform: uppercase;
-        user-select: none;
-        filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.5));
-      }
-
-      .wmA {
-        color: var(--primary);
-      }
-      .wmB {
-        color: var(--secondary);
-      }
-
-      /* Glitch-ish hover (subtle) */
-      .wordmark:hover {
-        text-shadow:
-          2px 0 0 rgba(255, 0, 0, 0.25),
-          -2px 0 0 rgba(0, 255, 255, 0.22);
-        transform: translateY(-1px);
-        transition:
-          text-shadow 0.18s ease,
-          transform 0.18s ease;
-      }
-
-      .wordmarkMeta {
-        margin-top: 10px;
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          "Liberation Mono",
-          "Courier New",
-          monospace;
-        font-size: 12px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.68);
-      }
-
-      /* Responsive */
-      @media (max-width: 980px) {
-        .slideInner {
-          grid-template-columns: 1fr;
-          min-height: unset;
-        }
-        .title {
-          font-size: 56px;
-        }
-        .desc {
-          font-size: 20px;
-        }
-        .wordmark {
-          font-size: 62px;
-        }
-        .brandChip {
-          min-width: unset;
-        }
-        .chipHint {
-          display: none;
-        }
-      }
-
-      @media (max-width: 560px) {
-        .topbarInner {
-          flex-wrap: wrap;
-          gap: 10px;
-        }
-        .selectWrap {
-          width: 100%;
-          margin-left: 0;
-        }
-        label {
-          display: none;
-        }
-        .slideInner {
-          padding: 18px;
-        }
-        .title {
-          font-size: 44px;
-        }
-        .desc {
-          font-size: 18px;
-        }
-        .swatch {
-          min-width: 64px;
-          height: 150px;
-        }
-        .wordmark {
-          font-size: 52px;
-        }
-        .typoRow {
-          grid-template-columns: 100px 1fr;
-        }
-      }
-
-      /* Light slides get automatic contrast */
-      .slide.isLight .eyebrow,
-      .slide.isLight .desc,
-      .slide.isLight .paletteTitle,
-      .slide.isLight .typoLabel,
-      .slide.isLight .typoVal,
-      .slide.isLight .wordmarkMeta {
-        color: rgba(0, 0, 0, 0.72);
-      }
-
-      .slide.isLight .typoCard,
-      .slide.isLight .wordmarkWrap {
-        background: rgba(0, 0, 0, 0.04);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
-      }
-
-      .slide.isLight .typoRow {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      }
-      .slide.isLight .swatches {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-      }
-      .slide.isLight .swatchCode {
-        background: rgba(255, 255, 255, 0.7);
-        color: rgba(0, 0, 0, 0.85);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-      }
-      .slide.isLight .wordmark:hover {
-        text-shadow:
-          2px 0 0 rgba(255, 0, 0, 0.18),
-          -2px 0 0 rgba(0, 255, 255, 0.18);
-      }
-
-      /* Debug/test panel (hidden by default) */
-      #testOutput {
-        display: none;
-        max-width: var(--max);
-        margin: 10px auto 0;
-        padding: 10px 18px;
-        color: rgba(255, 255, 255, 0.78);
-        font-family:
-          JetBrains Mono,
-          ui-monospace,
-          monospace;
-        font-size: 12px;
-        white-space: pre-wrap;
-      }
-    </style>
-  </head>
-
-  <body>
-    <header class="topbar">
-      <div class="topbarInner">
-        <div class="brandChip">
-          <div class="chipLogo">BRAND PITCH</div>
-          <div class="chipHint">one slide per theme • jump via dropdown</div>
-        </div>
-
-        <div class="selectWrap">
-          <label for="themeSelect">Direction</label>
-          <select id="themeSelect" aria-label="Select brand direction"></select>
-        </div>
-      </div>
-    </header>
-
-    <div id="testOutput"></div>
-
-    <main id="deck" class="deck" aria-label="Brand direction slide deck"></main>
-
-    <script>
-      // ===== Theme data (7 themes) =====
-      // Note: Each theme includes bg/text so slides can be dark OR light.
-      const THEMES = [
-        {
-          id: "signal-noise",
-          name: "SIGNAL / NOISE",
-          recommended: true,
-          description:
-            "Broadcast UI + scanlines + frequency overlap — modern‑retro, high contrast.",
-          colors: {
-            primary: "#0066FF", // frequencyBlue
-            secondary: "#FF3D00", // signalOrange
-            accent: "#FFFF00", // scanYellow
-            bg: "#0A0A0A", // voidBlack
-            text: "#F8F8F8", // ghostWhite
-            neutral: "#666666", // staticGray
-          },
-          typography: {
-            headline: "Space Grotesk (700–900)",
-            body: "Inter (400–600)",
-            meta: "JetBrains Mono (400–700)",
-            headlineFamily: "Space Grotesk",
-            bodyFamily: "Inter",
-            metaFamily: "JetBrains Mono",
-          },
-          textures: { scanOpacity: 0.1, grainOpacity: 0.07 },
-        },
-
-        {
-          id: "interface-futures",
-          name: "INTERFACE FUTURES",
-          recommended: false,
-          description:
-            "HUD overlays + grid systems + terminal prompts — clean, speculative, built for clarity.",
-          colors: {
-            primary: "#5B2EFF", // deepViolet
-            secondary: "#00E5FF", // holoCyan
-            accent: "#A3FF12", // neonLime
-            bg: "#0B0F1A", // carbon
-            text: "#EAF0FF", // fog
-            neutral: "#5D6476", // uiGray
-          },
-          typography: {
-            headline: "Syne (700–800)",
-            body: "DM Sans (400–700)",
-            meta: "IBM Plex Mono (400–600)",
-            headlineFamily: "Syne",
-            bodyFamily: "DM Sans",
-            metaFamily: "IBM Plex Mono",
-          },
-          textures: { scanOpacity: 0.06, grainOpacity: 0.05 },
-        },
-
-        {
-          id: "timeline-collision",
-          name: "TIMELINE COLLISION",
-          recommended: false,
-          description:
-            "Zine grids + timestamps + archive labels — eras collide, but the system stays readable.",
-          colors: {
-            primary: "#FF2D55", // collisionRed
-            secondary: "#00D9FF", // timeTeal
-            accent: "#111111", // inkBlack
-            bg: "#F4F1E8", // archiveCream (light)
-            text: "#111111", // inkBlack
-            neutral: "#6B6B6B", // graphite
-          },
-          typography: {
-            headline: "Archivo Black (caps)",
-            body: "Work Sans (400–700)",
-            meta: "Space Mono (400–700)",
-            headlineFamily: "Archivo Black",
-            bodyFamily: "Work Sans",
-            metaFamily: "Space Mono",
-          },
-          textures: { scanOpacity: 0.04, grainOpacity: 0.06 },
-        },
-
-        {
-          id: "vhs-night-drive",
-          name: "VHS NIGHT DRIVE",
-          recommended: false,
-          description:
-            "Night gradients + VHS noise + streetlight glow — kinetic, cinematic, late‑night clarity.",
-          colors: {
-            primary: "#FF2E88", // neonPink
-            secondary: "#00B3FF", // laserBlue
-            accent: "#FFB000", // streetAmber
-            bg: "#070B1C", // midnightNavy
-            text: "#F7F7FF", // fogWhite
-            neutral: "#5A5A6A", // vhsGray
-          },
-          typography: {
-            headline: "Bebas Neue (display)",
-            body: "Inter (400–600)",
-            meta: "Space Mono (400–700)",
-            headlineFamily: "Bebas Neue",
-            bodyFamily: "Inter",
-            metaFamily: "Space Mono",
-          },
-          textures: { scanOpacity: 0.12, grainOpacity: 0.08 },
-        },
-
-        {
-          id: "nostalgic-neon",
-          name: "NOSTALGIC NEON 🌴",
-          recommended: false,
-          description:
-            "Synthwave + Miami holographics + VHS glitch — 80s future fantasy meets Gen‑Z reality.",
-          colors: {
-            primary: "#FF006E", // Neon Magenta
-            secondary: "#00F5FF", // Electric Cyan
-            accent: "#FB5607", // Sunset Orange
-            bg: "#0B0B14",
-            text: "#F8F8FF",
-            neutral: "#4B4B5A",
-          },
-          typography: {
-            headline: "Archivo Black (skewed for italic vibe)",
-            body: "DM Sans (400–700)",
-            meta: "IBM Plex Mono (400–600)",
-            headlineFamily: "Archivo Black",
-            bodyFamily: "DM Sans",
-            metaFamily: "IBM Plex Mono",
-            headlineSkew: true,
-          },
-          textures: { scanOpacity: 0.1, grainOpacity: 0.06 },
-        },
-
-        {
-          id: "pop-collision",
-          name: "POP COLLISION 😊",
-          recommended: false,
-          description:
-            "Smiley/emoji culture + cassette pop graphics — friendly packaging for sharp ideas.",
-          colors: {
-            primary: "#FFED00", // Pop Yellow
-            secondary: "#FF0080", // Magenta Punch
-            accent: "#00D9FF", // Hyper Cyan
-            bg: "#0A0A0A",
-            text: "#F8F8F8",
-            neutral: "#666666",
-          },
-          typography: {
-            headline: "Dela Gothic One (chunky)",
-            body: "Inter (400–600)",
-            meta: "Space Mono (400–700)",
-            headlineFamily: "Dela Gothic One",
-            bodyFamily: "Inter",
-            metaFamily: "Space Mono",
-            accentFamily: "Permanent Marker",
-          },
-          textures: { scanOpacity: 0.07, grainOpacity: 0.05 },
-        },
-
-        {
-          id: "street-culture",
-          name: "STREET CULTURE 🛹",
-          recommended: false,
-          description:
-            "Graffiti energy + youth movement visuals — raw authenticity over polish.",
-          colors: {
-            primary: "#00FF41", // Matrix Green
-            secondary: "#FF2E63", // Rebel Red
-            accent: "#FFFB00", // Tag Yellow
-            bg: "#0A0A0A",
-            text: "#F8F8F8",
-            neutral: "#666666",
-          },
-          typography: {
-            headline: "Bebas Neue (display)",
-            body: "DM Sans (400–700)",
-            meta: "IBM Plex Mono (400–600)",
-            headlineFamily: "Bebas Neue",
-            bodyFamily: "DM Sans",
-            metaFamily: "IBM Plex Mono",
-            accentFamily: "Permanent Marker",
-          },
-          textures: { scanOpacity: 0.09, grainOpacity: 0.07 },
-        },
-      ];
-
-      // ===== Rendering =====
-      function isLightBg(hex) {
-        // Simple luminance heuristic
-        const c = hex.replace("#", "");
-        const r = parseInt(c.slice(0, 2), 16);
-        const g = parseInt(c.slice(2, 4), 16);
-        const b = parseInt(c.slice(4, 6), 16);
-        const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-        return lum > 0.72;
-      }
-
-      function safeText(t) {
-        return String(t).replace(
-          /[<>&]/g,
-          (s) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[s],
-        );
-      }
-
-      function buildSlide(theme) {
-        const { id, name, description, colors, typography, textures } = theme;
-        const light = isLightBg(colors.bg);
-
-        const swatchOrder = [
-          { label: "primary", value: colors.primary },
-          { label: "secondary", value: colors.secondary },
-          { label: "accent", value: colors.accent },
-          { label: "bg", value: colors.bg },
-          { label: "text", value: colors.text },
-          { label: "neutral", value: colors.neutral },
-        ];
-
-        const titleFamily = typography.headlineFamily || "Inter";
-        const bodyFamily = typography.bodyFamily || "Inter";
-        const metaFamily = typography.metaFamily || "JetBrains Mono";
-        const skew = typography.headlineSkew
-          ? "transform: skewX(-10deg); display:inline-block;"
-          : "";
-
-        const slide = document.createElement("section");
-        slide.className = `slide ${light ? "isLight" : ""}`;
-        slide.id = id;
-        slide.style.background = `radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,${light ? 0.22 : 0.07}), transparent 55%), radial-gradient(900px 520px at 90% 40%, rgba(255,255,255,${light ? 0.16 : 0.06}), transparent 60%), ${colors.bg}`;
-        slide.style.color = colors.text;
-        slide.style.setProperty(
-          "--scanOpacity",
-          String(textures?.scanOpacity ?? 0.08),
-        );
-        slide.style.setProperty(
-          "--grainOpacity",
-          String(textures?.grainOpacity ?? 0.06),
-        );
-        slide.style.setProperty("--accentText", colors.accent);
-
-        slide.innerHTML = `
-        <div class="slideInner">
-          <div>
-            <div class="eyebrow">BTW GEN • BRAND DIRECTION</div>
-            <h1 class="title" style="font-family:${safeText(titleFamily)}, Inter, system-ui; ${skew}">${safeText(name)}</h1>
-            <p class="desc" style="font-family:${safeText(bodyFamily)}, Inter, system-ui; color:${light ? "rgba(0,0,0,0.78)" : "rgba(255,255,255,0.80)"}">${safeText(description)}</p>
-            <div class="rule" style="background:${safeText(colors.accent)}"></div>
-
-            <div class="typoLabel">TYPOGRAPHY</div>
-            <div class="typoCard">
-              <div class="typoRow">
-                <div class="typoKey">HEADLINE</div>
-                <div class="typoVal" style="font-family:${safeText(titleFamily)}, Inter, system-ui;">${safeText(typography.headline)}</div>
-              </div>
-              <div class="typoRow">
-                <div class="typoKey">BODY</div>
-                <div class="typoVal" style="font-family:${safeText(bodyFamily)}, Inter, system-ui;">${safeText(typography.body)}</div>
-              </div>
-              <div class="typoRow">
-                <div class="typoKey">META</div>
-                <div class="typoVal" style="font-family:${safeText(metaFamily)}, JetBrains Mono, ui-monospace;">${safeText(typography.meta)}</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="paletteTitle">PALETTE</div>
-            <div class="swatches" aria-label="Color palette">
-              ${swatchOrder
-                .map(
-                  (s) => `
-                <div class="swatch" style="background:${safeText(s.value)}">
-                  <div class="swatchCode">${safeText(s.value.toUpperCase())}</div>
-                </div>
-              `,
-                )
-                .join("")}
-            </div>
-
-            <div class="wordmarkWrap" aria-label="Wordmark preview">
-              <div class="wordmark" style="font-family:${safeText(titleFamily)}, Inter, system-ui;">
-                <span class="wmA" style="--primary:${safeText(colors.primary)}; color:${safeText(colors.primary)}">BTW/</span><span class="wmB" style="--secondary:${safeText(colors.secondary)}; color:${safeText(colors.secondary)}">GEN</span>
-              </div>
-              <div class="wordmarkMeta">BTW/GEN uses Primary + Secondary</div>
-            </div>
-          </div>
-        </div>
-      `;
-
-        return slide;
-      }
-
-      function buildOptions(themes) {
-        const select = document.getElementById("themeSelect");
-        if (!select) return;
-
-        select.innerHTML = themes
-          .map((t) => {
-            const label = t.recommended ? `${t.name} (Recommended)` : t.name;
-            return `<option value="#${t.id}">${safeText(label)}</option>`;
-          })
-          .join("");
-
-        // Default selection
-        const rec = themes.find((t) => t.recommended) || themes[0];
-        select.value = `#${rec.id}`;
-
-        // Jump on change
-        select.addEventListener("change", (e) => {
-          const hash = e.target.value;
-          const el = document.querySelector(hash);
-          if (el) {
-            history.replaceState(null, "", hash);
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
-      }
-
-      function runSmokeTests() {
-        const outEl = document.getElementById("testOutput");
-        const lines = [];
-        function t(name, fn) {
-          try {
-            fn();
-            lines.push(`✓ ${name}`);
-          } catch (err) {
-            lines.push(`✗ ${name} — ${err.message || err}`);
-          }
-        }
-
-        t("THEMES has 7 items", () => {
-          if (THEMES.length !== 7)
-            throw new Error(`expected 7, got ${THEMES.length}`);
-        });
-
-        t("Each theme has required fields", () => {
-          const required = [
-            "id",
-            "name",
-            "description",
-            "colors",
-            "typography",
-          ];
-          THEMES.forEach((th, i) => {
-            required.forEach((k) => {
-              if (!(k in th)) throw new Error(`theme[${i}] missing ${k}`);
-            });
-            ["primary", "secondary", "accent", "bg", "text", "neutral"].forEach(
-              (k) => {
-                if (!th.colors?.[k])
-                  throw new Error(`${th.id} missing colors.${k}`);
-              },
-            );
-            [
-              "headline",
-              "body",
-              "meta",
-              "headlineFamily",
-              "bodyFamily",
-              "metaFamily",
-            ].forEach((k) => {
-              if (!th.typography?.[k])
-                throw new Error(`${th.id} missing typography.${k}`);
-            });
-          });
-        });
-
-        t("DOM has deck + select", () => {
-          if (!document.getElementById("deck"))
-            throw new Error("missing #deck");
-          if (!document.getElementById("themeSelect"))
-            throw new Error("missing #themeSelect");
-        });
-
-        // Keep hidden by default; toggle by appending ?debug=1
-        const debug = new URLSearchParams(location.search).get("debug") === "1";
-        if (debug && outEl) {
-          outEl.style.display = "block";
-          outEl.textContent = lines.join("\n");
-        }
-
-        // Always log failures in console
-        lines.filter((l) => l.startsWith("✗")).forEach((l) => console.error(l));
-      }
-
-      function wire() {
-        const deck = document.getElementById("deck");
-        if (!deck) return;
-
-        deck.innerHTML = "";
-        THEMES.forEach((theme, idx) => {
-          const slide = buildSlide(theme);
-          deck.appendChild(slide);
-          // stagger entrance
-          setTimeout(() => slide.classList.add("ready"), 90 + idx * 60);
-        });
-
-        buildOptions(THEMES);
-
-        // If a hash is present, jump to it (after render)
-        if (location.hash) {
-          const el = document.querySelector(location.hash);
-          if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-
-        runSmokeTests();
-      }
-
-      document.addEventListener("DOMContentLoaded", wire);
-    </script>
-  </body>
-</html>
-<!doctype html>
-<html lang="en">
-  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Between Generations — Logo Concepts</title>
@@ -1189,6 +159,22 @@
         }
       }
 
+      /* Square icon cards */
+      .logo-card {
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.25s;
+        border-radius: 7px;
+      }
+      .logo-card:hover {
+        transform: scale(1.02);
+      }
+
       /* Wide wordmark cards — 3:1 ratio, generous height */
       .wm-card {
         aspect-ratio: 3 / 1;
@@ -1206,6 +192,7 @@
       }
 
       /* SVGs fill their container exactly */
+      .logo-card svg,
       .wm-card svg {
         width: 100%;
         height: 100%;
@@ -1323,6 +310,7 @@
         height: 100%;
       }
 
+      .modal .logo-card,
       .modal .wm-card {
         width: 100%;
         max-height: 85vh;
@@ -1331,15 +319,23 @@
         border-radius: 12px;
         transform: scale(0.95);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .modal .logo-card {
+        max-width: min(90vw, 75vh);
+      }
+      .modal .wm-card {
         max-width: min(90vw, 1200px);
       }
 
       /* Override hover scale in modal */
+      .modal .logo-card:hover,
       .modal .wm-card:hover {
         transform: scale(1);
       }
 
       /* Activate pop animation */
+      .modal.active .logo-card,
       .modal.active .wm-card {
         transform: scale(1);
       }
@@ -1390,10 +386,10 @@
             <div class="wm-card ng-bg1">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="22"
+                  x="28"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="white"
                   transform="skewX(-7)"
                   opacity="0.95"
@@ -1401,21 +397,21 @@
                   BTW
                 </text>
                 <text
-                  x="476"
+                  x="456"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="white"
                   transform="skewX(-7)"
                   opacity="0.95"
                 >
                   GEN
                 </text>
-                <!-- Adjusted slash to stop perfectly at the horizontal line (y=260) -->
+                <!-- Adjusted slash to stop perfectly at the horizontal line (y=260) and properly slope -->
                 <line
-                  x1="452"
+                  x1="436"
                   y1="14"
-                  x2="401"
+                  x2="385"
                   y2="260"
                   stroke="#00F5FF"
                   stroke-width="9"
@@ -1439,7 +435,7 @@
                   font-family="'IBM Plex Mono',monospace"
                   font-size="10"
                   fill="#FF006E"
-                  letter-spacing="2"
+                  letter-spacing="1.5"
                 >
                   EST. 2026 · MAKING SENSE BETWEEN GENERATIONS
                 </text>
@@ -1450,7 +446,7 @@
                   font-size="10"
                   fill="#00F5FF65"
                   text-anchor="end"
-                  letter-spacing="2"
+                  letter-spacing="1.5"
                 >
                   GEN_Z / MILLENNIALS
                 </text>
@@ -1463,10 +459,10 @@
             <div class="wm-card ng-bg2">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="22"
+                  x="28"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="white"
                   transform="skewX(-7)"
                   opacity="0.95"
@@ -1474,10 +470,10 @@
                   BTW
                 </text>
                 <text
-                  x="476"
+                  x="456"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="white"
                   transform="skewX(-7)"
                   opacity="0.95"
@@ -1485,9 +481,9 @@
                   GEN
                 </text>
                 <line
-                  x1="452"
+                  x1="436"
                   y1="14"
-                  x2="401"
+                  x2="385"
                   y2="260"
                   stroke="#FF006E"
                   stroke-width="9"
@@ -1511,7 +507,7 @@
                   font-family="'IBM Plex Mono',monospace"
                   font-size="10"
                   fill="#FB5607"
-                  letter-spacing="2"
+                  letter-spacing="1.5"
                 >
                   EST. 2026 · MAKING SENSE BETWEEN GENERATIONS
                 </text>
@@ -1522,7 +518,7 @@
                   font-size="10"
                   fill="#FF006E65"
                   text-anchor="end"
-                  letter-spacing="2"
+                  letter-spacing="1.5"
                 >
                   GEN_Z / MILLENNIALS
                 </text>
@@ -1535,29 +531,29 @@
             <div class="wm-card ng-bg3">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="22"
+                  x="28"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#FF006E"
                   transform="skewX(-7)"
                 >
                   BTW
                 </text>
                 <text
-                  x="476"
+                  x="456"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#00F5FF"
                   transform="skewX(-7)"
                 >
                   GEN
                 </text>
                 <line
-                  x1="452"
+                  x1="436"
                   y1="14"
-                  x2="401"
+                  x2="385"
                   y2="260"
                   stroke="white"
                   stroke-width="9"
@@ -1577,7 +573,7 @@
                   font-family="'IBM Plex Mono',monospace"
                   font-size="10"
                   fill="#FF006E"
-                  letter-spacing="2"
+                  letter-spacing="1.5"
                 >
                   EST. 2026 · MAKING SENSE BETWEEN GENERATIONS
                 </text>
@@ -1588,7 +584,7 @@
                   font-size="10"
                   fill="#00F5FF65"
                   text-anchor="end"
-                  letter-spacing="2"
+                  letter-spacing="1.5"
                 >
                   GEN_Z / MILLENNIALS
                 </text>
@@ -1600,9 +596,199 @@
           </div>
         </div>
 
-        <!-- WM3 Glitch Overlap (Now Wordmark 02) -->
+        <!-- WM2 Stacked Split -->
         <div class="concept-block">
           <div class="concept-label">Wordmark 02</div>
+          <div class="concept-name">Stacked Split</div>
+          <div class="variants-row">
+            <div class="logo-card ng-bg1">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="168"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="white"
+                  text-anchor="middle"
+                  transform="skewX(-7)"
+                  opacity="0.96"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="28"
+                  y="180"
+                  width="344"
+                  height="7"
+                  rx="3.5"
+                  fill="#FF006E"
+                />
+                <text
+                  x="200"
+                  y="312"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#00F5FF"
+                  text-anchor="middle"
+                  transform="skewX(-7)"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="348"
+                  font-family="'IBM Plex Mono',monospace"
+                  font-size="10"
+                  fill="#ffffff25"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="370"
+                  font-family="'IBM Plex Mono',monospace"
+                  font-size="8"
+                  fill="#ffffff12"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span class="variant-label" style="color: #ff006e55"
+                >PINK BAR</span
+              >
+            </div>
+
+            <div class="logo-card ng-bg2">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="168"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#FF006E"
+                  text-anchor="middle"
+                  transform="skewX(-7)"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="28"
+                  y="180"
+                  width="344"
+                  height="7"
+                  rx="3.5"
+                  fill="#FB5607"
+                />
+                <text
+                  x="200"
+                  y="312"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="white"
+                  text-anchor="middle"
+                  transform="skewX(-7)"
+                  opacity="0.95"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="348"
+                  font-family="'IBM Plex Mono',monospace"
+                  font-size="10"
+                  fill="#ffffff25"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="370"
+                  font-family="'IBM Plex Mono',monospace"
+                  font-size="8"
+                  fill="#ffffff12"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span class="variant-label" style="color: #fb560755"
+                >ORANGE BAR</span
+              >
+            </div>
+
+            <div class="logo-card ng-bg3">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="168"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="white"
+                  text-anchor="middle"
+                  transform="skewX(-7)"
+                  opacity="0.96"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="28"
+                  y="180"
+                  width="344"
+                  height="7"
+                  rx="3.5"
+                  fill="#00F5FF"
+                />
+                <text
+                  x="200"
+                  y="312"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#FB5607"
+                  text-anchor="middle"
+                  transform="skewX(-7)"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="348"
+                  font-family="'IBM Plex Mono',monospace"
+                  font-size="10"
+                  fill="#ffffff25"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="370"
+                  font-family="'IBM Plex Mono',monospace"
+                  font-size="8"
+                  fill="#ffffff12"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span class="variant-label" style="color: #00f5ff55"
+                >CYAN BAR</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- WM3 Glitch Overlap -->
+        <div class="concept-block">
+          <div class="concept-label">Wordmark 03</div>
           <div class="concept-name">Glitch Overlap</div>
           <div class="variants-row">
             <div class="wm-card ng-bg1">
@@ -1845,28 +1031,28 @@
             <div class="wm-card tc-bg1">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="22"
+                  x="28"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#111"
                 >
                   BTW
                 </text>
                 <text
-                  x="476"
+                  x="456"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#111"
                 >
                   GEN
                 </text>
                 <!-- Adjusted slash to stop perfectly at the horizontal line (y=260) -->
                 <line
-                  x1="452"
+                  x1="436"
                   y1="14"
-                  x2="401"
+                  x2="385"
                   y2="260"
                   stroke="#FF2D55"
                   stroke-width="9"
@@ -1914,27 +1100,27 @@
             <div class="wm-card tc-bg2">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="22"
+                  x="28"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#FF2D55"
                 >
                   BTW
                 </text>
                 <text
-                  x="476"
+                  x="456"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#111"
                 >
                   GEN
                 </text>
                 <line
-                  x1="452"
+                  x1="436"
                   y1="14"
-                  x2="401"
+                  x2="385"
                   y2="260"
                   stroke="#111"
                   stroke-width="9"
@@ -1982,27 +1168,27 @@
             <div class="wm-card tc-bg3">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="22"
+                  x="28"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#111"
                 >
                   BTW
                 </text>
                 <text
-                  x="476"
+                  x="456"
                   y="226"
                   font-family="'Archivo Black',sans-serif"
-                  font-size="218"
+                  font-size="198"
                   fill="#00D9FF"
                 >
                   GEN
                 </text>
                 <line
-                  x1="452"
+                  x1="436"
                   y1="14"
-                  x2="401"
+                  x2="385"
                   y2="260"
                   stroke="#FF2D55"
                   stroke-width="9"
@@ -2049,9 +1235,205 @@
           </div>
         </div>
 
-        <!-- WM3 Archive Stamp (Now Wordmark 02) -->
+        <!-- WM2 Stacked LIGHT -->
         <div class="concept-block">
           <div class="concept-label" style="color: #ccc">Wordmark 02</div>
+          <div class="concept-name">Stacked Split</div>
+          <div class="variants-row">
+            <div class="logo-card tc-bg1">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="168"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#111"
+                  text-anchor="middle"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="28"
+                  y="180"
+                  width="344"
+                  height="7"
+                  rx="2"
+                  fill="#FF2D55"
+                />
+                <text
+                  x="200"
+                  y="312"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#00D9FF"
+                  text-anchor="middle"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="348"
+                  font-family="'Space Mono',monospace"
+                  font-size="10"
+                  fill="#11111138"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="370"
+                  font-family="'Space Mono',monospace"
+                  font-size="8"
+                  fill="#11111122"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span
+                class="variant-label"
+                style="
+                  color: #ff2d5555;
+                  font-family: &quot;Space Mono&quot;, monospace;
+                "
+                >RED BAR</span
+              >
+            </div>
+
+            <div class="logo-card tc-bg2">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="168"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#FF2D55"
+                  text-anchor="middle"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="28"
+                  y="180"
+                  width="344"
+                  height="7"
+                  rx="2"
+                  fill="#111"
+                />
+                <text
+                  x="200"
+                  y="312"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#111"
+                  text-anchor="middle"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="348"
+                  font-family="'Space Mono',monospace"
+                  font-size="10"
+                  fill="#FF2D5548"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="370"
+                  font-family="'Space Mono',monospace"
+                  font-size="8"
+                  fill="#11111122"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span
+                class="variant-label"
+                style="
+                  color: #ff2d5555;
+                  font-family: &quot;Space Mono&quot;, monospace;
+                "
+                >INK BAR</span
+              >
+            </div>
+
+            <div class="logo-card tc-bg3">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="168"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#111"
+                  text-anchor="middle"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="28"
+                  y="180"
+                  width="344"
+                  height="7"
+                  rx="2"
+                  fill="#00D9FF"
+                />
+                <text
+                  x="200"
+                  y="312"
+                  font-family="'Archivo Black',sans-serif"
+                  font-size="106"
+                  fill="#FF2D55"
+                  text-anchor="middle"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="348"
+                  font-family="'Space Mono',monospace"
+                  font-size="10"
+                  fill="#11111138"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="370"
+                  font-family="'Space Mono',monospace"
+                  font-size="8"
+                  fill="#11111122"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span
+                class="variant-label"
+                style="
+                  color: #00d9ff70;
+                  font-family: &quot;Space Mono&quot;, monospace;
+                "
+                >TEAL BAR</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- WM3 Archive Stamp -->
+        <div class="concept-block">
+          <div class="concept-label" style="color: #ccc">Wordmark 03</div>
           <div class="concept-name">Archive Stamp</div>
           <div class="variants-row">
             <div class="wm-card tc-bg1">
@@ -2269,20 +1651,20 @@
             <div class="wm-card vhs-bg1 vhs-scan">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="18"
+                  x="28"
                   y="226"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="white"
                   letter-spacing="-3"
                 >
                   BTW
                 </text>
                 <text
-                  x="21"
+                  x="31"
                   y="229"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#FF2E88"
                   letter-spacing="-3"
                   opacity="0.18"
@@ -2291,20 +1673,20 @@
                   BTW
                 </text>
                 <text
-                  x="468"
+                  x="456"
                   y="226"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="white"
                   letter-spacing="-3"
                 >
                   GEN
                 </text>
                 <text
-                  x="471"
+                  x="459"
                   y="229"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#00B3FF"
                   letter-spacing="-3"
                   opacity="0.18"
@@ -2314,9 +1696,9 @@
                 </text>
                 <!-- Adjusted slash to stop perfectly at the horizontal line (y=258) -->
                 <line
-                  x1="448"
+                  x1="436"
                   y1="12"
-                  x2="411"
+                  x2="399"
                   y2="258"
                   stroke="#00B3FF"
                   stroke-width="10"
@@ -2366,20 +1748,20 @@
             <div class="wm-card vhs-bg2 vhs-scan">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="18"
+                  x="28"
                   y="226"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="white"
                   letter-spacing="-3"
                 >
                   BTW
                 </text>
                 <text
-                  x="21"
+                  x="31"
                   y="229"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#FFB000"
                   letter-spacing="-3"
                   opacity="0.18"
@@ -2388,20 +1770,20 @@
                   BTW
                 </text>
                 <text
-                  x="468"
+                  x="456"
                   y="226"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="white"
                   letter-spacing="-3"
                 >
                   GEN
                 </text>
                 <text
-                  x="471"
+                  x="459"
                   y="229"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#FF2E88"
                   letter-spacing="-3"
                   opacity="0.18"
@@ -2410,9 +1792,9 @@
                   GEN
                 </text>
                 <line
-                  x1="448"
+                  x1="436"
                   y1="12"
-                  x2="411"
+                  x2="399"
                   y2="258"
                   stroke="#FF2E88"
                   stroke-width="10"
@@ -2462,20 +1844,20 @@
             <div class="wm-card vhs-bg3 vhs-scan">
               <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
                 <text
-                  x="18"
+                  x="28"
                   y="226"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#FF2E88"
                   letter-spacing="-3"
                 >
                   BTW
                 </text>
                 <text
-                  x="21"
+                  x="31"
                   y="229"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#00B3FF"
                   letter-spacing="-3"
                   opacity="0.18"
@@ -2484,20 +1866,20 @@
                   BTW
                 </text>
                 <text
-                  x="468"
+                  x="456"
                   y="226"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#00B3FF"
                   letter-spacing="-3"
                 >
                   GEN
                 </text>
                 <text
-                  x="471"
+                  x="459"
                   y="229"
                   font-family="'Bebas Neue',sans-serif"
-                  font-size="222"
+                  font-size="202"
                   fill="#FF2E88"
                   letter-spacing="-3"
                   opacity="0.18"
@@ -2506,9 +1888,9 @@
                   GEN
                 </text>
                 <line
-                  x1="448"
+                  x1="436"
                   y1="12"
-                  x2="411"
+                  x2="399"
                   y2="258"
                   stroke="#FFB000"
                   stroke-width="10"
@@ -2556,9 +1938,237 @@
           </div>
         </div>
 
-        <!-- WM3 Rec Mode (Now Wordmark 02) -->
+        <!-- WM2 Stacked VHS -->
         <div class="concept-block">
           <div class="concept-label">Wordmark 02</div>
+          <div class="concept-name">Stacked Split</div>
+          <div class="variants-row">
+            <div class="logo-card vhs-bg1 vhs-scan">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="162"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="white"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BTW
+                </text>
+                <text
+                  x="202"
+                  y="162"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="#FF2E88"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                  opacity="0.2"
+                  transform="translate(3,2)"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="26"
+                  y="175"
+                  width="348"
+                  height="6"
+                  rx="3"
+                  fill="#FF2E88"
+                />
+                <text
+                  x="200"
+                  y="296"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="#00B3FF"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="340"
+                  font-family="'Space Mono',monospace"
+                  font-size="10"
+                  fill="#ffffff20"
+                  text-anchor="middle"
+                  letter-spacing="6"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="362"
+                  font-family="'Space Mono',monospace"
+                  font-size="8"
+                  fill="#ffffff10"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span
+                class="variant-label"
+                style="
+                  color: #ff2e8855;
+                  font-family: &quot;Space Mono&quot;, monospace;
+                "
+                >PINK BAR</span
+              >
+            </div>
+
+            <div class="logo-card vhs-bg2 vhs-scan">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="162"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="#FFB000"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="26"
+                  y="175"
+                  width="348"
+                  height="6"
+                  rx="3"
+                  fill="#ffffff30"
+                />
+                <text
+                  x="200"
+                  y="296"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="white"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  GEN
+                </text>
+                <text
+                  x="202"
+                  y="296"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="#FF2E88"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                  opacity="0.2"
+                  transform="translate(3,2)"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="340"
+                  font-family="'Space Mono',monospace"
+                  font-size="10"
+                  fill="#FFB00022"
+                  text-anchor="middle"
+                  letter-spacing="6"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="362"
+                  font-family="'Space Mono',monospace"
+                  font-size="8"
+                  fill="#ffffff10"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span
+                class="variant-label"
+                style="
+                  color: #ffb00055;
+                  font-family: &quot;Space Mono&quot;, monospace;
+                "
+                >AMBER BTW</span
+              >
+            </div>
+
+            <div class="logo-card vhs-bg3 vhs-scan">
+              <svg viewBox="0 0 400 400">
+                <text
+                  x="200"
+                  y="162"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="white"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  BTW
+                </text>
+                <rect
+                  x="26"
+                  y="175"
+                  width="348"
+                  height="6"
+                  rx="3"
+                  fill="#00B3FF"
+                />
+                <text
+                  x="200"
+                  y="296"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="115"
+                  fill="#FF2E88"
+                  text-anchor="middle"
+                  letter-spacing="5"
+                >
+                  GEN
+                </text>
+                <text
+                  x="200"
+                  y="340"
+                  font-family="'Space Mono',monospace"
+                  font-size="10"
+                  fill="#00B3FF22"
+                  text-anchor="middle"
+                  letter-spacing="6"
+                >
+                  BETWEEN · GENERATIONS
+                </text>
+                <text
+                  x="200"
+                  y="362"
+                  font-family="'Space Mono',monospace"
+                  font-size="8"
+                  fill="#ffffff10"
+                  text-anchor="middle"
+                  letter-spacing="4"
+                >
+                  PODCAST · SINCE 2026
+                </text>
+              </svg>
+              <span
+                class="variant-label"
+                style="
+                  color: #00b3ff55;
+                  font-family: &quot;Space Mono&quot;, monospace;
+                "
+                >BLUE BAR</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- WM3 Rec Mode -->
+        <div class="concept-block">
+          <div class="concept-label">Wordmark 03</div>
           <div class="concept-name">Rec Mode</div>
           <div class="variants-row">
             <div class="wm-card vhs-bg1 vhs-scan">
@@ -2818,8 +2428,8 @@
       const modal = document.getElementById("logo-modal");
       const modalContent = document.getElementById("modal-content");
 
-      // Open modal on card click (only targets the remaining wm-cards)
-      document.querySelectorAll(".wm-card").forEach((card) => {
+      // Open modal on card click (targets both wide and square cards)
+      document.querySelectorAll(".logo-card, .wm-card").forEach((card) => {
         card.addEventListener("click", () => {
           // Clone the clicked card to preserve all SVGs and theme classes
           const clone = card.cloneNode(true);
